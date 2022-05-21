@@ -1,28 +1,38 @@
-package com.seytkalievm.passwordmanager.ui.auth
+package com.seytkalievm.passwordmanager.ui.auth.login
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import com.seytkalievm.passwordmanager.R
-import com.seytkalievm.passwordmanager.databinding.ActivityPasscodeBinding
-import com.seytkalievm.passwordmanager.ui.MainActivity
+import com.seytkalievm.passwordmanager.databinding.PasscodeFragmentBinding
+import com.seytkalievm.passwordmanager.ui.auth.AuthActivity
+import com.seytkalievm.passwordmanager.ui.auth.AuthViewModel
 
-class PasscodeActivity : AppCompatActivity() {
+class PasscodeFragment : Fragment() {
+
+    private val authViewModel: AuthViewModel by activityViewModels()
+    private lateinit var binding: PasscodeFragmentBinding
 
     private var passCode = "2284"
     private var input = ""
     private lateinit var circles: List<View>
     private lateinit var numPad: List<Button>
 
-    private lateinit var binding: ActivityPasscodeBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityPasscodeBinding.inflate(layoutInflater)
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = PasscodeFragmentBinding.inflate(inflater, container, false)
+
         circles = listOf( binding.circle1, binding.circle2, binding.circle3, binding.circle4)
         numPad = listOf(
             binding.button0,
@@ -30,8 +40,8 @@ class PasscodeActivity : AppCompatActivity() {
             binding.button4, binding.button5, binding.button6,
             binding.button7, binding.button8, binding.button9,
         )
-        setContentView(binding.root)
         setButtonClickListeners()
+        return binding.root
     }
 
     private fun setButtonClickListeners(){
@@ -55,11 +65,10 @@ class PasscodeActivity : AppCompatActivity() {
                     it.setImageResource(R.drawable.ic_baseline_fingerprint_24)
                 }
                 else -> {
-                    showBiometricAuth()
+                    (activity as AuthActivity).showBiometricAuth()
                 }
             }
         }
-
     }
 
     private fun setNumberListener(button: Button, number: Int){
@@ -80,12 +89,9 @@ class PasscodeActivity : AppCompatActivity() {
         }
 
         if (passCode == input){
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
-            startActivity(intent)
-            this.finish()
+            (activity as AuthActivity).startSession()
         } else{
-            val toast = Toast.makeText(applicationContext, "Wrong Passcode", Toast.LENGTH_SHORT)
+            val toast = Toast.makeText(context, "Wrong Passcode", Toast.LENGTH_SHORT)
             toast.show()
             input = ""
             binding.buttonBackspace.setImageResource(R.drawable.ic_baseline_fingerprint_24)
@@ -98,9 +104,4 @@ class PasscodeActivity : AppCompatActivity() {
 
         }
     }
-
-    private fun showBiometricAuth(){}
-
-
-
 }

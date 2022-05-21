@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "815065992509",
+    "project_id": "passwordmanager-ffac0",
+    "storage_bucket": "passwordmanager-ffac0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815065992509:android:e7dff238db1f21811b8954",
+        "android_client_info": {
+          "package_name": "com.seytkalievm.passwordmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "815065992509-v9pkim7sndgfmo80icpft26iko4mve18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvqYLauPRbokztsqY5d6N61C9u3p3gP_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "815065992509-v9pkim7sndgfmo80icpft26iko4mve18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
