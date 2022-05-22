@@ -7,7 +7,11 @@
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_password">Password:
+        \n\u25CF Must be at least 6 characters
+        \n\u25CF Must have at least 1 upper-case letter (A-Z)
+        \n\u25CF Must have at least 1 number (0\-9)
+    </string>
     <string name="login_failed">"Login failed"</string>
     <string name="password_do_not_match">Password don\'t match</string>
     <string name="_1">1</string>

@@ -1,16 +1,15 @@
 package com.seytkalievm.passwordmanager.ui.auth.login
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.databinding.FragmentRegisterBinding
@@ -36,12 +35,12 @@ class RegisterFragment : Fragment() {
             confPassword = registerConfPasswordEt
         }
 
-        setOnClickListeners()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.registerFragment = this
 
         viewModel.firebaseUser.observe(viewLifecycleOwner) { user ->
             if (user != null) {
@@ -50,61 +49,71 @@ class RegisterFragment : Fragment() {
             }
         }
 
-        viewModel.loginFormState.observe(viewLifecycleOwner,
-            Observer {
-                if(it == null){
-                    return@Observer
-                }
-                binding.registerRegisterBnt.isEnabled = it.isDataValid
-                it.emailError?.let {
-                    binding.registerEmailLayout.error = "Invalid Email"
-                }
-                it.passwordError?.let {
-                    binding.registerPasswordLayout.error = "Invalid password"
-                }
-                it.confPasswordError?.let {
-                    binding.registerConfPasswordLayout.error = "Password don't match"
-                }
-            }
-        )
-
-        val afterTextChangedListener = object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                // ignore
-            }
-
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                // ignore
-            }
-
-            override fun afterTextChanged(s: Editable) {
-                viewModel.registerDataChanged(
-                    binding.registerEmailEt.text.toString(),
-                    binding.registerPasswordEt.text.toString(),
-                    binding.registerConfPasswordEt.text.toString(),
-                )
+        viewModel.isValidEmail.observe(viewLifecycleOwner){
+            if (!it) {
+                binding.registerEmailLayout.error = getString(R.string.invalid_username)
+            } else {
+                binding.registerEmailLayout.isErrorEnabled = false
             }
         }
 
-        binding.registerEmailEt.addTextChangedListener(afterTextChangedListener)
-        binding.registerPasswordEt.addTextChangedListener(afterTextChangedListener)
-        binding.registerConfPasswordEt.addTextChangedListener(afterTextChangedListener)
+        viewModel.isValidPassword.observe(viewLifecycleOwner){
+            if (!it) {
+                binding.registerPasswordLayout.error = getString(R.string.invalid_password)
+            } else {
+                binding.registerPasswordLayout.isErrorEnabled = false
+            }
+        }
+
+        viewModel.doPasswordsMatch.observe(viewLifecycleOwner){
+            if (!it) {
+                binding.registerConfPasswordLayout.error = getString(R.string.password_do_not_match)
+            } else {
+                binding.registerConfPasswordLayout.isErrorEnabled = false
+            }
+        }
+
+        viewModel.canRegister.observe(viewLifecycleOwner){
+            binding.registerRegisterBnt.isEnabled = it
+        }
 
 
 
+        binding.registerEmailEt.addTextChangedListener {
+            viewModel.emailChanged(it.toString())
+
+            if (it != null) {
+                if (it.isEmpty())
+                    binding.registerEmailLayout.isErrorEnabled = false
+            }
+        }
+        binding.registerPasswordEt.addTextChangedListener {
+            viewModel.passwordChanged(it.toString())
+
+            if (it != null) {
+                if (it.isEmpty())
+                    binding.registerPasswordLayout.isErrorEnabled = false
+            }
+
+        }
+        binding.registerConfPasswordEt.addTextChangedListener {
+            viewModel.confPasswordChanged(it.toString())
+
+            if (it != null) {
+                if (it.isEmpty())
+                    binding.registerConfPasswordLayout.isErrorEnabled = false
+            }
+        }
 
 
     }
+    fun register(){
+        viewModel.register()
+    }
 
-    private fun setOnClickListeners(){
+    fun goToLogin(){
+        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
 
-        binding.registerRegisterBnt.setOnClickListener{
-            viewModel.register(email.text.toString(), password.text.toString())
-        }
-
-        binding.registerLoginBtn.setOnClickListener{
-            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-        }
     }
 
 }

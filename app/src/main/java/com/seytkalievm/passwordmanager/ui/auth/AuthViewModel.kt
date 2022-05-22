@@ -1,58 +1,85 @@
 package com.seytkalievm.passwordmanager.ui.auth
 
-import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
-import androidx.lifecycle.AndroidViewModel
-import com.google.firebase.auth.FirebaseUser
 import com.seytkalievm.passwordmanager.data.LoginRepository
-import com.seytkalievm.passwordmanager.data.Result
 
-import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.ui.auth.login.LoginFormState
-import com.seytkalievm.passwordmanager.ui.auth.login.LoginResult
 
-class AuthViewModel(private val loginRepository: LoginRepository, application: Application) : AndroidViewModel(
-    application
-) {
+class AuthViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
-
     val firebaseUser = loginRepository.userLiveData
 
-    private val _loginResult = MutableLiveData<LoginResult>()
-    val loginResult: LiveData<LoginResult> = _loginResult
+    private var email: String = ""
+    private var password: String = ""
+    private var confPassword: String = ""
 
-    fun register(email: String, password: String){
+    private val _canRegister = MutableLiveData<Boolean>()
+    val canRegister: MutableLiveData<Boolean> get() = _canRegister
+
+    private val _canLogin = MutableLiveData<Boolean>()
+    val canLogin: LiveData<Boolean> get() = _canLogin
+
+    private val _isValidEmail = MutableLiveData<Boolean>()
+    val isValidEmail: MutableLiveData<Boolean> get() = _isValidEmail
+
+    private val _isValidPassword = MutableLiveData<Boolean>()
+    val isValidPassword: MutableLiveData<Boolean> get() = _isValidPassword
+
+    private val _doPasswordsMatch = MutableLiveData<Boolean>()
+    val doPasswordsMatch: MutableLiveData<Boolean> get() = _doPasswordsMatch
+
+
+
+    fun register(){
         loginRepository.register(email, password)
     }
 
-    fun registerDataChanged(email: String, password: String, confirmPassword: String) {
-        if (!isEmailValid(email)) {
-            _loginForm.value = LoginFormState(emailError = R.string.invalid_username)
-        } else if (!isPasswordValid(password)) {
-            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
-        } else if (password != confirmPassword){
-            _loginForm.value = LoginFormState(passwordError = R.string.password_do_not_match)
+
+    fun emailChanged(email: String){
+        this.email = email
+        checkEmail()
+    }
+
+    fun passwordChanged(password: String){
+        this.password = password
+        checkPassword()
+    }
+
+    fun confPasswordChanged(confPassword: String){
+        this.confPassword = confPassword
+        checkPasswordsMatch()
+    }
+
+
+    private fun checkEmail() {
+        _isValidEmail.value = Patterns.EMAIL_ADDRESS.matcher(email).matches() && email.isNotEmpty()
+        checkFormValidity()
+    }
+
+    private fun checkPassword(){
+        val validator = Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$")
+        _isValidPassword.value = validator.matches(password)
+        checkFormValidity()
+    }
+
+    private fun checkPasswordsMatch(){
+        if (password.isNotEmpty() && confPassword.isNotEmpty()){
+            _doPasswordsMatch.value = password == confPassword
+            checkFormValidity()
         } else {
-            _loginForm.value = LoginFormState(isDataValid = true)
+            _doPasswordsMatch.value = false
         }
     }
 
-    private fun isEmailValid(email: String): Boolean {
-        return if (email.contains("@")) {
-            Patterns.EMAIL_ADDRESS.matcher(email).matches()
-        } else {
-            email.isNotBlank()
-        }
+    private fun checkFormValidity(){
+        _canRegister.value = _isValidEmail.value == true &&
+                _isValidPassword.value == true && _doPasswordsMatch.value == true
     }
 
-    private fun isPasswordValid(password: String): Boolean {
-        return password.length > 5
-    }
 
 }

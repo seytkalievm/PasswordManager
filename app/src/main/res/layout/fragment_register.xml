@@ -1,136 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/register_constr_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".ui.auth.login.RegisterFragment" >
 
-    <TextView
-        android:id="@+id/register_register_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        android:text="@string/create_an_account"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable
+            name="viewModel"
+            type="com.seytkalievm.passwordmanager.ui.auth.AuthViewModel" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_register_tv">
+        <variable
+            name="registerFragment"
+            type="com.seytkalievm.passwordmanager.ui.auth.login.RegisterFragment" />
+    </data>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/register_email_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:boxBackgroundColor="#00FFFFFF">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/register_constr_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/register_register_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
+            android:text="@string/create_an_account"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-                android:id="@+id/register_email_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/text_horizontal_margin"
-                android:layout_marginVertical="@dimen/text_vertical_margin"
-                android:ems="10"
-                android:hint="@string/prompt_email"
-                android:importantForAutofill="no"
-                android:inputType="text|textEmailAddress"
-                android:minHeight="48dp"
-                android:textColorHint="#757575" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_register_tv">
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/register_password_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:passwordToggleEnabled="true"
-            app:boxBackgroundColor="#00FFFFFF">
-
-            <EditText
-                android:id="@+id/register_password_et"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/register_email_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="@dimen/text_horizontal_margin"
-                android:layout_marginVertical="@dimen/text_vertical_margin"
-                android:ems="10"
-                android:hint="@string/password"
-                android:importantForAutofill="no"
-                android:inputType="textPassword"
-                android:minHeight="48dp"
-                android:textColorHint="#757575" />
-        </com.google.android.material.textfield.TextInputLayout>
+                app:boxBackgroundColor="#00FFFFFF">
+
+                <EditText
+                    android:id="@+id/register_email_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/text_horizontal_margin"
+                    android:layout_marginVertical="@dimen/text_vertical_margin"
+                    android:ems="10"
+                    android:hint="@string/prompt_email"
+                    android:importantForAutofill="no"
+                    android:inputType="text|textEmailAddress"
+                    android:minHeight="48dp"
+                    android:textColorHint="#757575"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/register_conf_password_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:passwordToggleEnabled="true"
-            app:boxBackgroundColor="#00FFFFFF">
-
-            <EditText
-                android:id="@+id/register_conf_password_et"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/register_password_layout"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:passwordToggleEnabled="true"
+                app:boxBackgroundColor="#00FFFFFF">
+
+                <EditText
+                    android:id="@+id/register_password_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="@dimen/text_horizontal_margin"
+                    android:layout_marginVertical="@dimen/text_vertical_margin"
+                    android:ems="10"
+                    android:hint="@string/password"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:minHeight="48dp"
+                    android:textColorHint="#757575"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/register_conf_password_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:passwordToggleEnabled="true"
+                app:boxBackgroundColor="#00FFFFFF">
+
+                <EditText
+                    android:id="@+id/register_conf_password_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/text_horizontal_margin"
+                    android:layout_marginVertical="@dimen/text_vertical_margin"
+                    android:ems="10"
+                    android:hint="@string/confirm_password"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:minHeight="48dp"
+                    android:textColorHint="#757575"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/register_register_bnt"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/text_horizontal_margin"
-                android:layout_marginVertical="@dimen/text_vertical_margin"
-                android:ems="10"
-                android:hint="@string/confirm_password"
-                android:importantForAutofill="no"
-                android:inputType="textPassword"
-                android:minHeight="48dp"
-                android:textColorHint="#757575" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:onClick="@{() -> registerFragment.register()}"
+                android:text="@string/register" />
+        </LinearLayout>
 
-
-        <Button
-            android:id="@+id/register_register_bnt"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/register" />
-    </LinearLayout>
+            android:layout_marginTop="63dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.0">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="63dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.0">
+            <TextView
+                android:id="@+id/register_have_account_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/already_have_an_account" />
 
-        <TextView
-            android:id="@+id/register_have_account_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/already_have_an_account" />
+            <Button
+                android:id="@+id/register_login_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:onClick="@{() -> registerFragment.goToLogin()}"
+                android:text="@string/login" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/register_login_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/login" />
-    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

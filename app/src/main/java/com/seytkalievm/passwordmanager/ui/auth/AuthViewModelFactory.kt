@@ -9,13 +9,12 @@ import com.seytkalievm.passwordmanager.data.LoginRepository
  * ViewModel provider factory to instantiate LoginViewModel.
  * Required given LoginViewModel has a non-empty constructor
  */
-class AuthViewModelFactory(private val application: Application) : ViewModelProvider.NewInstanceFactory() {
+class AuthViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(AuthViewModel::class.java)) {
             return AuthViewModel(
                 loginRepository = LoginRepository(application),
-                application = application
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
