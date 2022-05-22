@@ -11,17 +11,16 @@ import com.seytkalievm.passwordmanager.ui.auth.login.LoginFormState
 class AuthViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
     private val _loginForm = MutableLiveData<LoginFormState>()
-    val loginFormState: LiveData<LoginFormState> = _loginForm
     val firebaseUser = loginRepository.userLiveData
 
     private var email: String = ""
     private var password: String = ""
     private var confPassword: String = ""
 
-    private val _canRegister = MutableLiveData<Boolean>()
+    private val _canRegister = MutableLiveData<Boolean>(false)
     val canRegister: MutableLiveData<Boolean> get() = _canRegister
 
-    private val _canLogin = MutableLiveData<Boolean>()
+    private val _canLogin = MutableLiveData<Boolean>(false)
     val canLogin: LiveData<Boolean> get() = _canLogin
 
     private val _isValidEmail = MutableLiveData<Boolean>()
@@ -37,6 +36,10 @@ class AuthViewModel(private val loginRepository: LoginRepository) : ViewModel() 
 
     fun register(){
         loginRepository.register(email, password)
+    }
+
+    fun login(){
+        loginRepository.login(email, password)
     }
 
 
@@ -79,7 +82,16 @@ class AuthViewModel(private val loginRepository: LoginRepository) : ViewModel() 
     private fun checkFormValidity(){
         _canRegister.value = _isValidEmail.value == true &&
                 _isValidPassword.value == true && _doPasswordsMatch.value == true
+
+        _canLogin.value = email.isNotEmpty() && password.isNotEmpty()
     }
 
+    fun resetForms(){
+        email = ""
+        password = ""
+        confPassword = ""
+        _isValidPassword.value = true
+        _isValidEmail.value = true
+    }
 
 }

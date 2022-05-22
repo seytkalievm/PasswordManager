@@ -1,7 +1,6 @@
 package com.seytkalievm.passwordmanager.ui.auth.login
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -112,6 +111,7 @@ class RegisterFragment : Fragment() {
     }
 
     fun goToLogin(){
+        viewModel.resetForms()
         findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
 
     }

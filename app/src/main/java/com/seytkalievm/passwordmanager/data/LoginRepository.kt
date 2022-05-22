@@ -50,5 +50,8 @@ class LoginRepository(private val application: Application) {
             }
     }
 
+    fun loginWithGoogle(){
+
+    }
 
 }
