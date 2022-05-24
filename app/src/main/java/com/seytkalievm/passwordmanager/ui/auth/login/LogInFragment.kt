@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.databinding.FragmentLoginBinding
@@ -16,7 +17,8 @@ import com.seytkalievm.passwordmanager.ui.auth.AuthViewModel
 
 class LogInFragment : Fragment() {
 
-    private val viewModel: AuthViewModel by activityViewModels()
+    private val authViewModel: AuthViewModel by activityViewModels()
+    private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: FragmentLoginBinding
 
     override fun onCreateView(
@@ -31,13 +33,26 @@ class LogInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         binding.fragment = this
-        viewModel.firebaseUser.observe(viewLifecycleOwner){
+
+        authViewModel.firebaseUser.observe(viewLifecycleOwner){
             if (it != null) {
                 Toast.makeText(this.context, "User logged in", Toast.LENGTH_SHORT).show()
                 (activity as AuthActivity).startSession()
             }
+        }
+
+        loginViewModel.canLogin.observe(viewLifecycleOwner){
+            binding.loginLoginBtn.isEnabled = it
+        }
+
+        binding.loginEmailEt.addTextChangedListener {
+            loginViewModel.emailChanged(it.toString())
+        }
+
+        binding.loginPasswordEt.addTextChangedListener{
+            loginViewModel.passwordChanged(it.toString())
         }
 
     }
