@@ -3,9 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.347" />
         <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/drawable/bg_view_blue_circle.xml" value="0.3675" />
         <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/drawable/bg_view_grey_circle.xml" value="0.3675" />
+        <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/drawable/gradient_background.xml" value="0.33" />
+        <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/drawable/ic_baseline_fingerprint_24.xml" value="0.347" />
         <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/drawable/ic_baseline_remove_red_eye_24.xml" value="0.3675" />
+        <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/drawable/ic_launcher_background.xml" value="0.347" />
+        <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/drawable/ic_start_screen_image.xml" value="0.347" />
+        <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/drawable/start_screen_image.xml" value="0.347" />
+        <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/drawable/start_screen_img.xml" value="0.347" />
+        <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/font/assistant.xml" value="0.396875" />
+        <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/font/assistant_bold.xml" value="0.396875" />
+        <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/font/assistant_semibold.xml" value="0.396875" />
         <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.23560910307898258" />
         <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/layout-w936dp/activity_login.xml" value="0.275" />
         <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/layout/activity_auth.xml" value="0.36666666666666664" />
@@ -17,6 +27,7 @@
         <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/layout/fragment_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/layout/fragment_phone_confirmation.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/layout/fragment_register.xml" value="0.33" />
+        <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/layout/fragment_start_page.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/layout/home_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/layout/login_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Makshe/Repos/passManager/app/src/main/res/layout/passcode_fragment.xml" value="0.36666666666666664" />

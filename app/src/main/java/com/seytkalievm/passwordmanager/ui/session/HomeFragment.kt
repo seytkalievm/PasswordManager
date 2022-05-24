@@ -1,4 +1,4 @@
-package com.seytkalievm.passwordmanager.ui.session.ui.session
+package com.seytkalievm.passwordmanager.ui.session
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

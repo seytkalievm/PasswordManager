@@ -3,7 +3,6 @@ package com.seytkalievm.passwordmanager.ui.session
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.seytkalievm.passwordmanager.R
-import com.seytkalievm.passwordmanager.ui.session.ui.session.HomeFragment
 
 class SessionActivity : AppCompatActivity() {
 

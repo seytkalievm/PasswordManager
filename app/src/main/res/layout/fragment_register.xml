@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.auth.login.RegisterFragment" >
+    tools:context=".ui.auth.register.RegisterFragment" >
 
     <data>
         <variable
@@ -11,22 +11,26 @@
 
         <variable
             name="registerFragment"
-            type="com.seytkalievm.passwordmanager.ui.auth.login.RegisterFragment" />
+            type="com.seytkalievm.passwordmanager.ui.auth.register.RegisterFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/register_constr_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_background">
+
         <TextView
             android:id="@+id/register_register_tv"
+            style="@style/HeaderText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="88dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="16dp"
             android:text="@string/create_an_account"
             android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,119 +42,164 @@
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_register_tv">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/register_email_layout"
+                style="@style/InputText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:boxBackgroundColor="#00FFFFFF">
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/text_horizontal_margin"
+                android:layout_marginVertical="@dimen/text_vertical_margin">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/register_email_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/text_horizontal_margin"
-                    android:layout_marginVertical="@dimen/text_vertical_margin"
-                    android:ems="10"
                     android:hint="@string/prompt_email"
                     android:importantForAutofill="no"
                     android:inputType="text|textEmailAddress"
                     android:minHeight="48dp"
-                    android:textColorHint="#757575"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    tools:ignore="SpeakableTextPresentCheck,TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/register_password_layout"
+                style="@style/InputText"
+                android:layout_marginHorizontal="@dimen/text_horizontal_margin"
+                android:layout_marginVertical="@dimen/text_vertical_margin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:passwordToggleEnabled="true"
-                app:boxBackgroundColor="#00FFFFFF">
+                app:passwordToggleEnabled="true">
 
                 <EditText
                     android:id="@+id/register_password_et"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginHorizontal="@dimen/text_horizontal_margin"
-                    android:layout_marginVertical="@dimen/text_vertical_margin"
-                    android:ems="10"
                     android:hint="@string/password"
                     android:importantForAutofill="no"
                     android:inputType="textPassword"
                     android:minHeight="48dp"
-                    android:textColorHint="#757575"
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/register_conf_password_layout"
+                style="@style/InputText"
+                android:layout_marginHorizontal="@dimen/text_horizontal_margin"
+                android:layout_marginVertical="@dimen/text_vertical_margin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:passwordToggleEnabled="true"
-                app:boxBackgroundColor="#00FFFFFF">
+                app:passwordToggleEnabled="true">
 
                 <EditText
                     android:id="@+id/register_conf_password_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/text_horizontal_margin"
-                    android:layout_marginVertical="@dimen/text_vertical_margin"
-                    android:ems="10"
+                    android:fontFamily="@font/assistant_semibold"
                     android:hint="@string/confirm_password"
                     android:importantForAutofill="no"
                     android:inputType="textPassword"
                     android:minHeight="48dp"
-                    android:textColorHint="#757575"
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <Button
-                android:id="@+id/register_register_bnt"
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="95dp"
+            android:layout_height="153dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="-2dp"
+            android:src="@drawable/ok_hand"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/ok_hand" />
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="1.0">
+
+            <TextView
+                android:id="@+id/register_have_account_tv"
+                style="@style/HeaderText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="@{() -> registerFragment.register()}"
-                android:text="@string/register" />
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/already_have_an_account"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/register_login_btn"
+                style="@style/HeaderText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:onClick="@{() -> registerFragment.goToLogin()}"
+                android:text="@string/sign_in"
+                android:textColor="@color/teal"
+                android:textSize="14sp"
+                tools:ignore="TextContrastCheck" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="63dp"
-            android:gravity="center"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.0">
-
-            <TextView
-                android:id="@+id/register_have_account_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/already_have_an_account" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
             <Button
-                android:id="@+id/register_login_btn"
-                android:layout_width="wrap_content"
+                android:id="@+id/register_register_bnt"
+                style="@style/WideButton"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:onClick="@{() -> registerFragment.goToLogin()}"
-                android:text="@string/login" />
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="28dp"
+                android:onClick="@{() -> registerFragment.register()}"
+                android:text="@string/register"
+                tools:ignore="TextContrastCheck" />
+
+            <Button
+                android:id="@+id/register_continue_with_google_btn"
+                style="@style/FirebaseUI.Button.AccountChooser.GoogleButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginBottom="64dp"
+                android:text="@string/continue_with_google"
+                android:textAlignment="center"
+                android:textColor="@color/teal"
+                app:iconGravity="textStart"
+                tools:ignore="TextContrastCheck" />
         </LinearLayout>
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>

@@ -33,18 +33,6 @@ class LogInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.fragment = this
-        binding.loginEmailEt.addTextChangedListener {
-            viewModel.emailChanged(it.toString())
-        }
-
-        binding.loginPasswordEt.addTextChangedListener{
-            viewModel.passwordChanged(it.toString())
-        }
-
-        viewModel.canLogin.observe(viewLifecycleOwner){
-            binding.loginLoginBtn.isEnabled = it
-        }
-
         viewModel.firebaseUser.observe(viewLifecycleOwner){
             if (it != null) {
                 Toast.makeText(this.context, "User logged in", Toast.LENGTH_SHORT).show()
@@ -55,11 +43,8 @@ class LogInFragment : Fragment() {
     }
 
     fun goToRegister(){
-        viewModel.resetForms()
         findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
     }
 
-    fun login(){
-        viewModel.login()
-    }
+
 }

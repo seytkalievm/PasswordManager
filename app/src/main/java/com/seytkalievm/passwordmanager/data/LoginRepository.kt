@@ -18,14 +18,16 @@ import com.seytkalievm.passwordmanager.data.model.LoggedInUser
 
 class LoginRepository(private val application: Application) {
 
-    private val _user = MutableLiveData<FirebaseUser>()
     private val firebaseAuth = FirebaseAuth.getInstance()
+    private var user = firebaseAuth.currentUser
+    private val _user = MutableLiveData<FirebaseUser>(user)
     val userLiveData: LiveData<FirebaseUser> get() = _user
 
     fun register(email: String, password: String){
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
+                    sendEmailVerification()
                     _user.postValue(firebaseAuth.currentUser)
                 } else {
                      Toast
@@ -36,6 +38,24 @@ class LoginRepository(private val application: Application) {
             }
     }
 
+    fun logout(){
+        firebaseAuth.signOut()
+    }
+
+    private fun sendEmailVerification(){
+        if (user != null){
+            user!!.sendEmailVerification()
+                .addOnCompleteListener{ task ->
+                if(task.isSuccessful){
+                    Toast
+                        .makeText(application,
+                            "Verification email sent", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }
+
+    }
     fun login(email: String, password: String){
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
