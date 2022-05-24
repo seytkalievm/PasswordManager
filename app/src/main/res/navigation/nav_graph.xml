@@ -60,9 +60,11 @@
         tools:layout="@layout/fragment_start_page" >
         <action
             android:id="@+id/action_startPageFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/startPageFragment" />
         <action
             android:id="@+id/action_startPageFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/registerFragment"
+            app:popUpTo="@id/startPageFragment" />
     </fragment>
 </navigation>

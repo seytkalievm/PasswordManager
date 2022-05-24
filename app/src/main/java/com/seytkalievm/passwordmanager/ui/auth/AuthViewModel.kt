@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import android.util.Patterns
 import com.seytkalievm.passwordmanager.data.LoginRepository
 
-import com.seytkalievm.passwordmanager.ui.auth.login.LoginFormState
 
 class AuthViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 

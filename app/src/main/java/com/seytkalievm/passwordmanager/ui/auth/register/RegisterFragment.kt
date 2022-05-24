@@ -67,20 +67,17 @@ class RegisterFragment : Fragment() {
         }
 
         email.addTextChangedListener {
-            Log.i("AA", it.toString())
             binding.registerEmailLayout.error = null
             registerViewModel.emailChanged(it.toString())
         }
 
         password.addTextChangedListener {
-            Log.i("AA", it.toString())
             binding.registerPasswordLayout.error = null
 
             registerViewModel.passwordChanged(it.toString())
         }
 
         confPassword.addTextChangedListener {
-            Log.i("AA", it.toString())
             binding.registerConfPasswordLayout.error = null
             registerViewModel.confPasswordChanged(it.toString())
         }
