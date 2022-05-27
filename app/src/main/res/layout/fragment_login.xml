@@ -121,6 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/continue_with_google"
+                android:onClick="@{() -> fragment.loginWithGoogle()}"
                 android:layout_marginHorizontal="@dimen/wide_button_horizontal_margin"
                 android:layout_marginVertical="@dimen/wide_button_vertical_margin"/>
         </LinearLayout>

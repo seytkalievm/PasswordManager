@@ -109,9 +109,7 @@ class RegisterFragment : Fragment() {
     }
 
     fun continueWithGoogle(){
-        val intent = registerViewModel.startGoogleSignInFlow()
-        (activity as AuthActivity).startActivityForResult(intent, RC_SIGN_IN)
-
+        (activity as AuthActivity).signInWithGoogle()
     }
 
     fun goToLogin(){

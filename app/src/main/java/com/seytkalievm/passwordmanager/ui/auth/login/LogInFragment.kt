@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.auth.api.Auth
 import com.seytkalievm.passwordmanager.PasswordManagerApplication
 import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.databinding.FragmentLoginBinding
@@ -70,6 +71,10 @@ class LogInFragment : Fragment() {
 
     fun logIn(){
         loginViewModel.login()
+    }
+
+    fun loginWithGoogle(){
+        (activity as AuthActivity).signInWithGoogle()
     }
 
     fun goToRegister(){

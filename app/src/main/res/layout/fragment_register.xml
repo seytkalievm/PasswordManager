@@ -192,6 +192,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/wide_button_horizontal_margin"
                 android:layout_marginVertical="@dimen/wide_button_vertical_margin"
+                android:onClick="@{() -> registerFragment.continueWithGoogle()}"
                 android:text="@string/continue_with_google"
                 tools:ignore="TextContrastCheck" />
         </LinearLayout>
