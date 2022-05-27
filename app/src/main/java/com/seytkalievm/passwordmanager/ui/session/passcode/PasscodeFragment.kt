@@ -1,4 +1,4 @@
-package com.seytkalievm.passwordmanager.ui.auth.passcode
+package com.seytkalievm.passwordmanager.ui.session.passcode
 
 import android.os.Bundle
 import android.util.Log
@@ -9,12 +9,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
 import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.databinding.FragmentPasscodeBinding
-import com.seytkalievm.passwordmanager.ui.auth.AuthActivity
-import com.seytkalievm.passwordmanager.ui.auth.AuthViewModel
-import com.seytkalievm.passwordmanager.ui.session.passcode.PasscodeActivity
 
 class PasscodeFragment : Fragment() {
 

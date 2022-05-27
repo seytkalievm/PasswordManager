@@ -6,10 +6,6 @@
 
     <data>
         <variable
-            name="viewModel"
-            type="com.seytkalievm.passwordmanager.ui.auth.AuthViewModel" />
-
-        <variable
             name="registerFragment"
             type="com.seytkalievm.passwordmanager.ui.auth.register.RegisterFragment" />
     </data>

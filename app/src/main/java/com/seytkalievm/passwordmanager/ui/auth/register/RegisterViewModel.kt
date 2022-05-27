@@ -72,9 +72,6 @@ class RegisterViewModel@Inject constructor(val authRepository: AuthRepository): 
         }
     }
 
-    fun startGoogleSignInFlow(): Intent {
-        return authRepository.loginWithGoogle()
-    }
 
     fun checkFromValidity(){
         _isFormValid = isValidEmail() && isValidPassword() && doPasswordsMatch()

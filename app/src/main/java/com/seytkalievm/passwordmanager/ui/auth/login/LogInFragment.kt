@@ -2,7 +2,6 @@ package com.seytkalievm.passwordmanager.ui.auth.login
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,13 +10,11 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.auth.api.Auth
 import com.seytkalievm.passwordmanager.PasswordManagerApplication
 import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.databinding.FragmentLoginBinding
 import com.seytkalievm.passwordmanager.ui.auth.AuthActivity
 import com.seytkalievm.passwordmanager.ui.auth.ViewModelFactory
-import com.seytkalievm.passwordmanager.ui.auth.register.RegisterViewModel
 import javax.inject.Inject
 
 class LogInFragment : Fragment() {

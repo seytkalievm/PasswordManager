@@ -6,7 +6,7 @@
     app:startDestination="@id/startPageFragment">
     <fragment
         android:id="@+id/passcodeFragment"
-        android:name="com.seytkalievm.passwordmanager.ui.auth.passcode.PasscodeFragment"
+        android:name="com.seytkalievm.passwordmanager.ui.session.passcode.PasscodeFragment"
         android:label="passcode_fragment"
         tools:layout="@layout/fragment_passcode" >
         <action

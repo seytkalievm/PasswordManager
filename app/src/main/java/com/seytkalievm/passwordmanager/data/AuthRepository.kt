@@ -80,15 +80,5 @@ class AuthRepository @Inject constructor(val context: Context) {
             }
     }
 
-    fun loginWithGoogle(): Intent {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(
-                Resources.getSystem().getString(com.firebase.ui.auth.R.string.default_web_client_id)
-            )
-            .requestEmail()
-            .build()
-        val mSignInClient = GoogleSignIn.getClient(context, gso)
-        return mSignInClient.signInIntent
-    }
 
 }

@@ -7,7 +7,6 @@ import android.util.Log
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.seytkalievm.passwordmanager.R
-import com.seytkalievm.passwordmanager.ui.auth.passcode.PasscodeFragment
 import com.seytkalievm.passwordmanager.ui.session.main.SessionActivity
 import java.util.concurrent.Executor
 

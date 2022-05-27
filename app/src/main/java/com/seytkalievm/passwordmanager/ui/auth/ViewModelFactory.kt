@@ -1,14 +1,9 @@
 package com.seytkalievm.passwordmanager.ui.auth
 
-import android.app.Application
-import android.content.Context
-import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.seytkalievm.passwordmanager.data.AuthRepository
 import javax.inject.Inject
 import javax.inject.Provider
-import javax.inject.Singleton
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

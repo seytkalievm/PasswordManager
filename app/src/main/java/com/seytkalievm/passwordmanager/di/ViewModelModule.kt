@@ -2,7 +2,6 @@ package com.seytkalievm.passwordmanager.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.seytkalievm.passwordmanager.ui.auth.AuthViewModel
 import com.seytkalievm.passwordmanager.ui.auth.ViewModelFactory
 import com.seytkalievm.passwordmanager.ui.auth.login.LoginViewModel
 import com.seytkalievm.passwordmanager.ui.auth.register.RegisterViewModel
@@ -17,11 +16,6 @@ abstract class ViewModelModule {
 
     @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(AuthViewModel::class)
-    internal abstract fun authViewModel(viewModel: AuthViewModel): ViewModel
 
     @Binds
     @IntoMap

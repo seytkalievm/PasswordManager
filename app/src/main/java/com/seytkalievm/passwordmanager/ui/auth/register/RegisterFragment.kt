@@ -9,21 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.auth.api.Auth
 import com.seytkalievm.passwordmanager.PasswordManagerApplication
 import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.databinding.FragmentRegisterBinding
 import com.seytkalievm.passwordmanager.ui.auth.AuthActivity
-import com.seytkalievm.passwordmanager.ui.auth.AuthViewModel
 import com.seytkalievm.passwordmanager.ui.auth.ViewModelFactory
 import javax.inject.Inject
 
-const val RC_SIGN_IN = 120
 
 class RegisterFragment : Fragment() {
 

@@ -2,6 +2,6 @@ package com.seytkalievm.passwordmanager.ui.session.passcode
 
 import androidx.lifecycle.ViewModel
 
-class MainViewModel : ViewModel() {
+class PasscodeViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

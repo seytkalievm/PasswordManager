@@ -1,35 +1,26 @@
 package com.seytkalievm.passwordmanager.ui.auth
 
 import android.content.Intent
-import android.content.IntentSender
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.biometric.BiometricPrompt
-import androidx.core.content.ContextCompat
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
-import com.google.android.gms.auth.api.identity.Identity
-import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.common.api.CommonStatusCodes
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.seytkalievm.passwordmanager.R
-
 import com.seytkalievm.passwordmanager.databinding.ActivityAuthBinding
-import com.seytkalievm.passwordmanager.ui.auth.register.RC_SIGN_IN
 import com.seytkalievm.passwordmanager.ui.session.main.SessionActivity
-import java.util.concurrent.Executor
 
 class AuthActivity : AppCompatActivity() {
 
+    private val RC_SIGN_IN = 120
     private val TAG = "AuthActivity"
     private lateinit var binding: ActivityAuthBinding
 
-    private lateinit var executor: Executor
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 
@@ -39,7 +30,8 @@ class AuthActivity : AppCompatActivity() {
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
-            .requestProfile()
+            .requestEmail()
+            .requestId()
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         firebaseAuth = FirebaseAuth.getInstance()
@@ -76,6 +68,7 @@ class AuthActivity : AppCompatActivity() {
                 }
             } else {
                 Log.w(TAG, exception.toString())
+                Toast.makeText(this, exception?.message, Toast.LENGTH_SHORT).show()
 
             }
         }
@@ -92,6 +85,8 @@ class AuthActivity : AppCompatActivity() {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
+                    Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
+
                 }
             }
     }
