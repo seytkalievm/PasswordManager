@@ -6,7 +6,7 @@ import com.seytkalievm.passwordmanager.ui.auth.AuthViewModel
 import com.seytkalievm.passwordmanager.ui.auth.ViewModelFactory
 import com.seytkalievm.passwordmanager.ui.auth.login.LoginViewModel
 import com.seytkalievm.passwordmanager.ui.auth.register.RegisterViewModel
-import com.seytkalievm.passwordmanager.ui.session.HomeViewModel
+import com.seytkalievm.passwordmanager.ui.session.main.HomeViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

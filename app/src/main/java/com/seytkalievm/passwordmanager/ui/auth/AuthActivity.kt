@@ -6,45 +6,25 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
-import com.seytkalievm.passwordmanager.PasswordManagerApplication
+import com.google.firebase.auth.FirebaseAuth
 
 import com.seytkalievm.passwordmanager.databinding.ActivityAuthBinding
-import com.seytkalievm.passwordmanager.ui.MainActivity
-import com.seytkalievm.passwordmanager.ui.session.SessionActivity
+import com.seytkalievm.passwordmanager.ui.session.main.SessionActivity
 import java.util.concurrent.Executor
-import javax.inject.Inject
 
 class AuthActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAuthBinding
 
     private lateinit var executor: Executor
-    private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        firebaseAuth = FirebaseAuth.getInstance()
         executor = ContextCompat.getMainExecutor(this)
-        biometricPrompt = BiometricPrompt(this@AuthActivity, executor,
-            object:BiometricPrompt.AuthenticationCallback(){
-                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-                    super.onAuthenticationError(errorCode, errString)
-                    Log.i("E", "Auth error")
-                }
 
-                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                    super.onAuthenticationSucceeded(result)
-                    Log.i("E", "Auth success")
-                    startSession()
-                }
-
-                override fun onAuthenticationFailed() {
-                    super.onAuthenticationFailed()
-                    Log.i("E", "Auth failed")
-
-                }
-            })
 
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -57,12 +37,4 @@ class AuthActivity : AppCompatActivity() {
         finish()
     }
 
-    fun showBiometricAuth(){
-        promptInfo = BiometricPrompt.PromptInfo.Builder()
-            .setTitle("Password Manager Authentication")
-            .setSubtitle("Touch fingerprint sensor to log in")
-            .setNegativeButtonText("Cancel")
-            .build()
-        biometricPrompt.authenticate(promptInfo)
-    }
 }

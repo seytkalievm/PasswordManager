@@ -1,16 +1,16 @@
 package com.seytkalievm.passwordmanager.data
 
-import android.app.Application
 import android.content.Context
+import android.content.Intent
+import android.content.res.Resources
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.seytkalievm.passwordmanager.data.model.LoggedInUser
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -64,8 +64,8 @@ class AuthRepository @Inject constructor(val context: Context) {
                 }
             }
         }
-
     }
+
     fun login(email: String, password: String){
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
@@ -80,8 +80,15 @@ class AuthRepository @Inject constructor(val context: Context) {
             }
     }
 
-    fun loginWithGoogle(){
-
+    fun loginWithGoogle(): Intent {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(
+                Resources.getSystem().getString(com.firebase.ui.auth.R.string.default_web_client_id)
+            )
+            .requestEmail()
+            .build()
+        val mSignInClient = GoogleSignIn.getClient(context, gso)
+        return mSignInClient.signInIntent
     }
 
 }

@@ -1,12 +1,10 @@
 package com.seytkalievm.passwordmanager.di
 
-import android.app.Application
 import android.content.Context
-import com.seytkalievm.passwordmanager.PasswordManagerApplication
 import com.seytkalievm.passwordmanager.ui.auth.AuthActivity
 import com.seytkalievm.passwordmanager.ui.auth.login.LogInFragment
 import com.seytkalievm.passwordmanager.ui.auth.register.RegisterFragment
-import com.seytkalievm.passwordmanager.ui.session.HomeFragment
+import com.seytkalievm.passwordmanager.ui.session.main.HomeFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton

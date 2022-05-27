@@ -8,7 +8,7 @@
         android:id="@+id/passcodeFragment"
         android:name="com.seytkalievm.passwordmanager.ui.auth.passcode.PasscodeFragment"
         android:label="passcode_fragment"
-        tools:layout="@layout/passcode_fragment" >
+        tools:layout="@layout/fragment_passcode" >
         <action
             android:id="@+id/action_passcodeFragment_to_sessionActivity"
             app:destination="@id/sessionActivity" />
@@ -64,7 +64,7 @@
     </fragment>
     <activity
         android:id="@+id/sessionActivity"
-        android:name="com.seytkalievm.passwordmanager.ui.session.SessionActivity"
+        android:name="com.seytkalievm.passwordmanager.ui.session.main.SessionActivity"
         android:label="session_activity"
-        tools:layout="@layout/session_activity" />
+        tools:layout="@layout/activity_session" />
 </navigation>

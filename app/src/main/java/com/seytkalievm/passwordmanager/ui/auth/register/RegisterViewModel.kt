@@ -1,5 +1,6 @@
 package com.seytkalievm.passwordmanager.ui.auth.register
 
+import android.content.Intent
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -71,6 +72,9 @@ class RegisterViewModel@Inject constructor(val authRepository: AuthRepository): 
         }
     }
 
+    fun startGoogleSignInFlow(): Intent {
+        return authRepository.loginWithGoogle()
+    }
 
     fun checkFromValidity(){
         _isFormValid = isValidEmail() && isValidPassword() && doPasswordsMatch()

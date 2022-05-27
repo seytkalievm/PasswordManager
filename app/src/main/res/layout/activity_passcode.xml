@@ -4,11 +4,11 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.session.SessionActivity" >
+    tools:context=".PasscodeActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="com.seytkalievm.passwordmanager.ui.session.HomeFragment"
+        android:id="@+id/fragmentContainerView2"
+        android:name="com.seytkalievm.passwordmanager.ui.auth.passcode.PasscodeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>

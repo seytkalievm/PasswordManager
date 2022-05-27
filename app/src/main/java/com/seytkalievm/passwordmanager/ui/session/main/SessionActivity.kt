@@ -1,19 +1,18 @@
-package com.seytkalievm.passwordmanager.ui.session
+package com.seytkalievm.passwordmanager.ui.session.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.seytkalievm.passwordmanager.R
-import com.seytkalievm.passwordmanager.databinding.SessionActivityBinding
+import com.seytkalievm.passwordmanager.databinding.ActivitySessionBinding
 import com.seytkalievm.passwordmanager.ui.auth.AuthActivity
 
 class SessionActivity : AppCompatActivity() {
 
-    private lateinit var binding: SessionActivityBinding
+    private lateinit var binding: ActivitySessionBinding
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-        binding = SessionActivityBinding.inflate(layoutInflater)
+        binding = ActivitySessionBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 

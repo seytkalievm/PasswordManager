@@ -11,14 +11,14 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.seytkalievm.passwordmanager.R
-import com.seytkalievm.passwordmanager.databinding.PasscodeFragmentBinding
+import com.seytkalievm.passwordmanager.databinding.FragmentPasscodeBinding
 import com.seytkalievm.passwordmanager.ui.auth.AuthActivity
 import com.seytkalievm.passwordmanager.ui.auth.AuthViewModel
+import com.seytkalievm.passwordmanager.ui.session.passcode.PasscodeActivity
 
 class PasscodeFragment : Fragment() {
 
-    private val authViewModel: AuthViewModel by activityViewModels()
-    private lateinit var binding: PasscodeFragmentBinding
+    private lateinit var binding: FragmentPasscodeBinding
 
     private var passCode = "2284"
     private var input = ""
@@ -31,7 +31,7 @@ class PasscodeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = PasscodeFragmentBinding.inflate(inflater, container, false)
+        binding = FragmentPasscodeBinding.inflate(inflater, container, false)
 
         circles = listOf( binding.circle1, binding.circle2, binding.circle3, binding.circle4)
         numPad = listOf(
@@ -65,7 +65,7 @@ class PasscodeFragment : Fragment() {
                     it.setImageResource(R.drawable.ic_baseline_fingerprint_24)
                 }
                 else -> {
-                    (activity as AuthActivity).showBiometricAuth()
+                    (activity as PasscodeActivity).showBiometricAuth()
                 }
             }
         }
@@ -89,7 +89,7 @@ class PasscodeFragment : Fragment() {
         }
 
         if (passCode == input){
-            (activity as AuthActivity).startSession()
+            (activity as PasscodeActivity).startSession()
         } else{
             val toast = Toast.makeText(context, "Wrong Passcode", Toast.LENGTH_SHORT)
             toast.show()
