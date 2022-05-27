@@ -1,15 +1,14 @@
 package com.seytkalievm.passwordmanager.ui.auth
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Patterns
-import com.seytkalievm.passwordmanager.data.LoginRepository
+import com.seytkalievm.passwordmanager.data.AuthRepository
+import javax.inject.Inject
 
 
-class AuthViewModel(private val loginRepository: LoginRepository) : ViewModel() {
+class AuthViewModel @Inject constructor(private val authRepository: AuthRepository) : ViewModel() {
 
-    val firebaseUser = loginRepository.userLiveData
+    val firebaseUser = authRepository.userLiveData
 
     private val _isValidEmail = MutableLiveData<Boolean>()
     val isValidEmail: MutableLiveData<Boolean> get() = _isValidEmail
@@ -23,11 +22,11 @@ class AuthViewModel(private val loginRepository: LoginRepository) : ViewModel() 
 
 
     fun register(email: String, password: String){
-        loginRepository.register(email, password)
+        authRepository.register(email, password)
     }
 
     fun login(email: String, password: String){
-        loginRepository.login(email, password)
+        authRepository.login(email, password)
     }
 
 

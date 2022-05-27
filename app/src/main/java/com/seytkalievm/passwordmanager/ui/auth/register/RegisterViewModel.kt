@@ -5,8 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.seytkalievm.passwordmanager.R
+import com.seytkalievm.passwordmanager.data.AuthRepository
+import javax.inject.Inject
 
-class RegisterViewModel: ViewModel() {
+class RegisterViewModel@Inject constructor(val authRepository: AuthRepository): ViewModel() {
+
+    val firebaseUser = authRepository.userLiveData
 
     private var _fromState = MutableLiveData(RegistrationFormState())
     val formState: LiveData<RegistrationFormState> get() = _fromState
@@ -72,5 +76,8 @@ class RegisterViewModel: ViewModel() {
         _isFormValid = isValidEmail() && isValidPassword() && doPasswordsMatch()
     }
 
+    fun register(){
+        authRepository.register(email, password)
+    }
 
 }

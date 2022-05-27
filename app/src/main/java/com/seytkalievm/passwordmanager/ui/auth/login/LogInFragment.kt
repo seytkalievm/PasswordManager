@@ -1,25 +1,36 @@
 package com.seytkalievm.passwordmanager.ui.auth.login
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.seytkalievm.passwordmanager.PasswordManagerApplication
 import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.databinding.FragmentLoginBinding
 import com.seytkalievm.passwordmanager.ui.auth.AuthActivity
-import com.seytkalievm.passwordmanager.ui.auth.AuthViewModel
+import com.seytkalievm.passwordmanager.ui.auth.ViewModelFactory
+import com.seytkalievm.passwordmanager.ui.auth.register.RegisterViewModel
+import javax.inject.Inject
 
 class LogInFragment : Fragment() {
 
-    private val authViewModel: AuthViewModel by activityViewModels()
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: FragmentLoginBinding
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity?.application as PasswordManagerApplication).appComponent.inject(this)
+        loginViewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +47,7 @@ class LogInFragment : Fragment() {
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         binding.fragment = this
 
-        authViewModel.firebaseUser.observe(viewLifecycleOwner){
+        loginViewModel.firebaseUser.observe(viewLifecycleOwner){
             if (it != null) {
                 Toast.makeText(this.context, "User logged in", Toast.LENGTH_SHORT).show()
                 (activity as AuthActivity).startSession()
@@ -55,6 +66,10 @@ class LogInFragment : Fragment() {
             loginViewModel.passwordChanged(it.toString())
         }
 
+    }
+
+    fun logIn(){
+        loginViewModel.login()
     }
 
     fun goToRegister(){

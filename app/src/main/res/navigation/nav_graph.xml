@@ -10,8 +10,8 @@
         android:label="passcode_fragment"
         tools:layout="@layout/passcode_fragment" >
         <action
-            android:id="@+id/action_passcodeFragment_to_mainActivity"
-            app:destination="@id/mainActivity" />
+            android:id="@+id/action_passcodeFragment_to_sessionActivity"
+            app:destination="@id/sessionActivity" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -45,14 +45,9 @@
         android:label="fragment_create_passcode"
         tools:layout="@layout/fragment_create_passcode" >
         <action
-            android:id="@+id/action_createPasscodeFragment_to_mainActivity"
-            app:destination="@id/mainActivity" />
+            android:id="@+id/action_createPasscodeFragment_to_sessionActivity"
+            app:destination="@id/sessionActivity" />
     </fragment>
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.seytkalievm.passwordmanager.ui.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/startPageFragment"
         android:name="com.seytkalievm.passwordmanager.ui.auth.StartPageFragment"
@@ -67,4 +62,9 @@
             app:destination="@id/registerFragment"
             app:popUpTo="@id/startPageFragment" />
     </fragment>
+    <activity
+        android:id="@+id/sessionActivity"
+        android:name="com.seytkalievm.passwordmanager.ui.session.SessionActivity"
+        android:label="session_activity"
+        tools:layout="@layout/session_activity" />
 </navigation>

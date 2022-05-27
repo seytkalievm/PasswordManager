@@ -3,9 +3,12 @@ package com.seytkalievm.passwordmanager.ui.auth.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.seytkalievm.passwordmanager.data.AuthRepository
+import javax.inject.Inject
 
-class LoginViewModel: ViewModel() {
+class LoginViewModel @Inject constructor(val authRepository: AuthRepository): ViewModel() {
 
+    val firebaseUser = authRepository.userLiveData
     private val _canLogin = MutableLiveData(false)
     val canLogin: LiveData<Boolean> get() = _canLogin
     private var email = ""
@@ -29,5 +32,8 @@ class LoginViewModel: ViewModel() {
         }
     }
 
+    fun login(){
+        authRepository.login(email, password)
+    }
 
 }

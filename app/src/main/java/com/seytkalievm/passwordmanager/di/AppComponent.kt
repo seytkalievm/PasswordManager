@@ -1,8 +1,27 @@
 package com.seytkalievm.passwordmanager.di
 
+import android.app.Application
+import android.content.Context
+import com.seytkalievm.passwordmanager.PasswordManagerApplication
+import com.seytkalievm.passwordmanager.ui.auth.AuthActivity
+import com.seytkalievm.passwordmanager.ui.auth.login.LogInFragment
+import com.seytkalievm.passwordmanager.ui.auth.register.RegisterFragment
+import com.seytkalievm.passwordmanager.ui.session.HomeFragment
+import dagger.BindsInstance
 import dagger.Component
+import javax.inject.Singleton
 
-
-@Component
+@Singleton
+@Component(modules = [ViewModelModule::class])
 interface AppComponent {
+
+    @Component.Factory
+    interface Factory{
+        fun create(@BindsInstance context: Context): AppComponent
+    }
+
+    fun inject(activity: AuthActivity)
+    fun inject(fragment: LogInFragment)
+    fun inject(fragment: RegisterFragment)
+    fun inject(fragment: HomeFragment)
 }

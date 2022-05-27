@@ -7,10 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.seytkalievm.passwordmanager.PasswordManagerApplication
 
 import com.seytkalievm.passwordmanager.databinding.ActivityAuthBinding
 import com.seytkalievm.passwordmanager.ui.MainActivity
+import com.seytkalievm.passwordmanager.ui.session.SessionActivity
 import java.util.concurrent.Executor
+import javax.inject.Inject
 
 class AuthActivity : AppCompatActivity() {
 
@@ -19,7 +22,6 @@ class AuthActivity : AppCompatActivity() {
     private lateinit var executor: Executor
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
-    lateinit var authViewModel: AuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,13 +46,12 @@ class AuthActivity : AppCompatActivity() {
                 }
             })
 
-        authViewModel = ViewModelProvider(this, AuthViewModelFactory(this.application))[AuthViewModel::class.java]
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 
     fun startSession(){
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, SessionActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
         startActivity(intent)
         finish()
@@ -59,7 +60,7 @@ class AuthActivity : AppCompatActivity() {
     fun showBiometricAuth(){
         promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle("Password Manager Authentication")
-            .setSubtitle("Touch fingerprint senson to log in")
+            .setSubtitle("Touch fingerprint sensor to log in")
             .setNegativeButtonText("Cancel")
             .build()
         biometricPrompt.authenticate(promptInfo)

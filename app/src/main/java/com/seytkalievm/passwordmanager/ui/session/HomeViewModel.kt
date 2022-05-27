@@ -1,7 +1,12 @@
 package com.seytkalievm.passwordmanager.ui.session
 
 import androidx.lifecycle.ViewModel
+import com.seytkalievm.passwordmanager.data.AuthRepository
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class HomeViewModel @Inject constructor(private val authRepository: AuthRepository) : ViewModel() {
+
+    fun logout(){
+        authRepository.logout()
+    }
 }

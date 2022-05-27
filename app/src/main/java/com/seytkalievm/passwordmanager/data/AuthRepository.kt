@@ -1,6 +1,7 @@
 package com.seytkalievm.passwordmanager.data
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
@@ -10,17 +11,18 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.seytkalievm.passwordmanager.data.model.LoggedInUser
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Class that requests authentication and user information from the remote data source and
  * maintains an in-memory cache of login status and user credentials information.
  */
-
-class LoginRepository(private val application: Application) {
+@Singleton
+class AuthRepository @Inject constructor(val context: Context) {
 
     private val firebaseAuth = FirebaseAuth.getInstance()
-    private var user = firebaseAuth.currentUser
-    private val _user = MutableLiveData<FirebaseUser>(user)
+    private val _user = MutableLiveData<FirebaseUser>()
     val userLiveData: LiveData<FirebaseUser> get() = _user
 
     fun register(email: String, password: String){
@@ -31,7 +33,7 @@ class LoginRepository(private val application: Application) {
                     _user.postValue(firebaseAuth.currentUser)
                 } else {
                      Toast
-                         .makeText(application,
+                         .makeText(context,
                              "Registration error ${it.exception}", Toast.LENGTH_SHORT)
                          .show()
                 }
@@ -39,16 +41,24 @@ class LoginRepository(private val application: Application) {
     }
 
     fun logout(){
+        Toast
+            .makeText(context,
+                "Signing out", Toast.LENGTH_SHORT)
+            .show()
+
         firebaseAuth.signOut()
+        _user.postValue(firebaseAuth.currentUser)
+        Log.i("User:", firebaseAuth.currentUser.toString())
     }
 
     private fun sendEmailVerification(){
+        val user = firebaseAuth.currentUser
         if (user != null){
             user!!.sendEmailVerification()
                 .addOnCompleteListener{ task ->
                 if(task.isSuccessful){
                     Toast
-                        .makeText(application,
+                        .makeText(context,
                             "Verification email sent", Toast.LENGTH_SHORT)
                         .show()
                 }
@@ -63,7 +73,7 @@ class LoginRepository(private val application: Application) {
                     _user.postValue(firebaseAuth.currentUser)
                 } else {
                     Toast
-                        .makeText(application,
+                        .makeText(context,
                             "Registration error ${it.exception}", Toast.LENGTH_SHORT)
                         .show()
                 }

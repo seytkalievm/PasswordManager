@@ -112,6 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/wide_button_vertical_margin"
                 android:layout_marginHorizontal="@dimen/wide_button_horizontal_margin"
+                android:onClick="@{() -> fragment.logIn()}"
                 android:text="@string/sign_in" />
 
             <Button

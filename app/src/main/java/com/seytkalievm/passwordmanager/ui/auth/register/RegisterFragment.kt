@@ -1,5 +1,6 @@
 package com.seytkalievm.passwordmanager.ui.auth.register
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,10 +13,13 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.seytkalievm.passwordmanager.PasswordManagerApplication
 import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.databinding.FragmentRegisterBinding
 import com.seytkalievm.passwordmanager.ui.auth.AuthActivity
 import com.seytkalievm.passwordmanager.ui.auth.AuthViewModel
+import com.seytkalievm.passwordmanager.ui.auth.ViewModelFactory
+import javax.inject.Inject
 
 
 class RegisterFragment : Fragment() {
@@ -24,8 +28,18 @@ class RegisterFragment : Fragment() {
     private lateinit var email: EditText
     private lateinit var password: EditText
     private lateinit var confPassword: EditText
-    private val authViewModel: AuthViewModel by activityViewModels()
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
     private lateinit var registerViewModel: RegisterViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity?.application as PasswordManagerApplication).appComponent.inject(this)
+        registerViewModel = ViewModelProvider(this, viewModelFactory)[RegisterViewModel::class.java]
+        Log.i("ViewModel", registerViewModel.authRepository.toString())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +60,7 @@ class RegisterFragment : Fragment() {
 
         registerViewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
 
-        authViewModel.firebaseUser.observe(viewLifecycleOwner) { user ->
+        registerViewModel.firebaseUser.observe(viewLifecycleOwner) { user ->
             if (user != null) {
                 Toast.makeText(this.context, "User Registered", Toast.LENGTH_SHORT).show()
                 (activity as AuthActivity).startSession()
@@ -87,13 +101,12 @@ class RegisterFragment : Fragment() {
         registerViewModel.checkFromValidity()
 
         if (registerViewModel.isFromValid){
-            authViewModel.register(email.text.toString(), password.text.toString())
+            registerViewModel.register()
         }
     }
 
     fun goToLogin(){
         findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-
     }
 
 }
