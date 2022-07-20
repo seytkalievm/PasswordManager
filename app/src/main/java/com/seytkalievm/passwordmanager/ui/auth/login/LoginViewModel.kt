@@ -4,9 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.seytkalievm.passwordmanager.data.AuthRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor(val authRepository: AuthRepository): ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    val authRepository: AuthRepository,
+): ViewModel() {
 
     val firebaseUser = authRepository.userLiveData
     private val _canLogin = MutableLiveData(false)

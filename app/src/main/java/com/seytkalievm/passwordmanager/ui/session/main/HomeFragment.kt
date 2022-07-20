@@ -1,29 +1,18 @@
 package com.seytkalievm.passwordmanager.ui.session.main
 
-import android.content.Context
-import androidx.lifecycle.ViewModelProvider
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.seytkalievm.passwordmanager.PasswordManagerApplication
+import androidx.fragment.app.viewModels
 import com.seytkalievm.passwordmanager.databinding.FragmentHomeBinding
-import com.seytkalievm.passwordmanager.ui.auth.ViewModelFactory
-import javax.inject.Inject
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var viewModel: HomeViewModel
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (activity?.application as PasswordManagerApplication).appComponent.inject(this)
-        viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
-    }
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

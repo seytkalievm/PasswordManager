@@ -1,14 +1,15 @@
 package com.seytkalievm.passwordmanager.ui.auth.register
 
-import android.content.Intent
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.data.AuthRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel
 class RegisterViewModel@Inject constructor(val authRepository: AuthRepository): ViewModel() {
 
     val firebaseUser = authRepository.userLiveData

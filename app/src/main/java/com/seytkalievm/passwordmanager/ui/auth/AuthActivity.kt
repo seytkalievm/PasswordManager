@@ -14,7 +14,9 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.databinding.ActivityAuthBinding
 import com.seytkalievm.passwordmanager.ui.session.main.SessionActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AuthActivity : AppCompatActivity() {
 
     private val RC_SIGN_IN = 120
@@ -69,7 +71,6 @@ class AuthActivity : AppCompatActivity() {
             } else {
                 Log.w(TAG, exception.toString())
                 Toast.makeText(this, exception?.message, Toast.LENGTH_SHORT).show()
-
             }
         }
     }

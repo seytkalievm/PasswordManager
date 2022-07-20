@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.seytkalievm.passwordmanager.R
+import com.seytkalievm.passwordmanager.ui.auth.AuthActivity
 import com.seytkalievm.passwordmanager.ui.session.main.SessionActivity
 import java.util.concurrent.Executor
 
@@ -50,6 +51,14 @@ class PasscodeActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+    fun exit(){
+        val intent = Intent(this, AuthActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
+        startActivity(intent)
+        finish()
+    }
+
     fun showBiometricAuth(){
         promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle("Password Manager Authentication")

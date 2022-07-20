@@ -35,10 +35,12 @@
     <string name="confirm_password">Confirm password</string>
     <string name="confirm">Confirm</string>
     <string name="hello_user">Hello, %d</string>
-    <string name="contintue">Contintue</string>
+    <string name="proceed">Proceed</string>
     <string name="i_m_not_user">I\'m not %d</string>
     <string name="Code">Code</string>
-    <string name="create_pass_code">Create Pass code</string>
+    <string name="create_passcode">Create Passcode</string>
+    <string name="confirm_passcode">Confirm Passcode</string>
+    <string name="passcodes_dont_match">Passcodes do not match</string>
     <string name="email">Email</string>
     <string name="sign_in">Sign in</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
