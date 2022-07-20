@@ -1,4 +1,4 @@
-package com.seytkalievm.passwordmanager.ui.auth.register
+package com.seytkalievm.passwordmanager.presentation.auth.register
 
 import android.util.Patterns
 import androidx.lifecycle.LiveData

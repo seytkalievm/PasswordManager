@@ -1,4 +1,4 @@
-package com.seytkalievm.passwordmanager.ui.session.passcode
+package com.seytkalievm.passwordmanager.presentation.passcode.enter
 
 import android.util.Log
 import androidx.lifecycle.*
@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PasscodeViewModel @Inject constructor(
+class EnterPasscodeViewModel @Inject constructor(
     private val preferencesRepository: UserPreferencesRepository,
     private val authRepository: AuthRepository
     ): ViewModel() {

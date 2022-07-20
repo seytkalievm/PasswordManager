@@ -6,7 +6,7 @@
     app:startDestination="@id/startPageFragment">
     <fragment
         android:id="@+id/passcodeFragment"
-        android:name="com.seytkalievm.passwordmanager.ui.session.passcode.PasscodeFragment"
+        android:name="com.seytkalievm.passwordmanager.presentation.passcode.enter.EnterPasscodeFragment"
         android:label="passcode_fragment"
         tools:layout="@layout/fragment_passcode" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.seytkalievm.passwordmanager.ui.auth.login.LogInFragment"
+        android:name="com.seytkalievm.passwordmanager.presentation.auth.login.LogInFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.seytkalievm.passwordmanager.ui.auth.register.RegisterFragment"
+        android:name="com.seytkalievm.passwordmanager.presentation.auth.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/createPasscodeFragment"
-        android:name="com.seytkalievm.passwordmanager.ui.auth.passcode.CreatePasscodeFragment"
+        android:name="com.seytkalievm.passwordmanager.presentation.auth.passcode.CreatePasscodeFragment"
         android:label="fragment_create_passcode"
         tools:layout="@layout/fragment_create_passcode" >
         <action
@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/startPageFragment"
-        android:name="com.seytkalievm.passwordmanager.ui.auth.StartPageFragment"
+        android:name="com.seytkalievm.passwordmanager.presentation.auth.StartPageFragment"
         android:label="fragment_start_page"
         tools:layout="@layout/fragment_start_page" >
         <action
@@ -64,7 +64,7 @@
     </fragment>
     <activity
         android:id="@+id/sessionActivity"
-        android:name="com.seytkalievm.passwordmanager.ui.session.main.SessionActivity"
+        android:name="com.seytkalievm.passwordmanager.presentation.session.main.SessionActivity"
         android:label="session_activity"
         tools:layout="@layout/activity_session" />
 </navigation>

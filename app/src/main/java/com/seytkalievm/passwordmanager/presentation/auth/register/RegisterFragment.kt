@@ -1,4 +1,4 @@
-package com.seytkalievm.passwordmanager.ui.auth.register
+package com.seytkalievm.passwordmanager.presentation.auth.register
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,7 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.databinding.FragmentRegisterBinding
-import com.seytkalievm.passwordmanager.ui.auth.AuthActivity
+import com.seytkalievm.passwordmanager.presentation.auth.AuthActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

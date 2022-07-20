@@ -1,4 +1,4 @@
-package com.seytkalievm.passwordmanager.ui.auth.createpasscode
+package com.seytkalievm.passwordmanager.presentation.passcode.create
 
 import android.util.Log
 import androidx.lifecycle.LiveData

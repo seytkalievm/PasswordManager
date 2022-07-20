@@ -1,4 +1,4 @@
-package com.seytkalievm.passwordmanager.ui.auth
+package com.seytkalievm.passwordmanager.presentation.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

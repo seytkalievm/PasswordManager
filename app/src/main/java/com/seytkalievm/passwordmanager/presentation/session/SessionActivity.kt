@@ -1,10 +1,10 @@
-package com.seytkalievm.passwordmanager.ui.session.main
+package com.seytkalievm.passwordmanager.presentation.session
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.seytkalievm.passwordmanager.databinding.ActivitySessionBinding
-import com.seytkalievm.passwordmanager.ui.auth.AuthActivity
+import com.seytkalievm.passwordmanager.presentation.auth.AuthActivity
 
 class SessionActivity : AppCompatActivity() {
 

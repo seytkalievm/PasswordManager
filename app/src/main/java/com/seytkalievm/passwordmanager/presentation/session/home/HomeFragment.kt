@@ -1,4 +1,4 @@
-package com.seytkalievm.passwordmanager.ui.session.main
+package com.seytkalievm.passwordmanager.presentation.session.home
 
 
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.seytkalievm.passwordmanager.databinding.FragmentHomeBinding
+import com.seytkalievm.passwordmanager.presentation.session.SessionActivity
 
 class HomeFragment : Fragment() {
 

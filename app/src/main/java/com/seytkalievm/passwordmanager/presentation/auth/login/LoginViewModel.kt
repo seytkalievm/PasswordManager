@@ -1,4 +1,4 @@
-package com.seytkalievm.passwordmanager.ui.auth.login
+package com.seytkalievm.passwordmanager.presentation.auth.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

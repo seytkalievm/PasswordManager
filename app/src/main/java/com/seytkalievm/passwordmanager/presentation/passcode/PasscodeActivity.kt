@@ -1,4 +1,4 @@
-package com.seytkalievm.passwordmanager.ui.session.passcode
+package com.seytkalievm.passwordmanager.presentation.passcode
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,8 +7,8 @@ import android.util.Log
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.seytkalievm.passwordmanager.R
-import com.seytkalievm.passwordmanager.ui.auth.AuthActivity
-import com.seytkalievm.passwordmanager.ui.session.main.SessionActivity
+import com.seytkalievm.passwordmanager.presentation.auth.AuthActivity
+import com.seytkalievm.passwordmanager.presentation.session.main.SessionActivity
 import java.util.concurrent.Executor
 
 class PasscodeActivity : AppCompatActivity() {

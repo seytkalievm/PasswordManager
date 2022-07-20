@@ -1,11 +1,12 @@
-package com.seytkalievm.passwordmanager
+package com.seytkalievm.passwordmanager.presentation
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
-import com.seytkalievm.passwordmanager.ui.auth.AuthActivity
-import com.seytkalievm.passwordmanager.ui.session.passcode.PasscodeActivity
+import com.seytkalievm.passwordmanager.R
+import com.seytkalievm.passwordmanager.presentation.auth.AuthActivity
+import com.seytkalievm.passwordmanager.presentation.passcode.PasscodeActivity
 
 class MainActivity : AppCompatActivity() {
 

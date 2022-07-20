@@ -1,4 +1,4 @@
-package com.seytkalievm.passwordmanager.ui.session.main
+package com.seytkalievm.passwordmanager.presentation.session.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

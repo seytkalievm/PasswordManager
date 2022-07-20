@@ -15,16 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PasswordManager" >
         <activity
-            android:name=".ui.session.passcode.PasscodeActivity"
+            android:name=".presentation.passcode.PasscodeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.session.main.SessionActivity"
+            android:name=".presentation.session.main.SessionActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.auth.AuthActivity"
+            android:name=".presentation.auth.AuthActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.seytkalievm.passwordmanager.ui.auth
+package com.seytkalievm.passwordmanager.presentation.auth
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.databinding.ActivityAuthBinding
-import com.seytkalievm.passwordmanager.ui.session.main.SessionActivity
+import com.seytkalievm.passwordmanager.presentation.session.SessionActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

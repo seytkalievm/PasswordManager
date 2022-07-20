@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.auth.register.RegisterFragment" >
+    tools:context=".presentation.auth.register.RegisterFragment" >
 
     <data>
         <variable
             name="registerFragment"
-            type="com.seytkalievm.passwordmanager.ui.auth.register.RegisterFragment" />
+            type="com.seytkalievm.passwordmanager.presentation.auth.register.RegisterFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
