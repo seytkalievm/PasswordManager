@@ -1,4 +1,4 @@
-package com.seytkalievm.passwordmanager.data
+package com.seytkalievm.passwordmanager.data.repository
 
 import android.content.Context
 import android.util.Log
@@ -12,14 +12,14 @@ import kotlinx.coroutines.flow.map
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "passcode_store")
 
+private val PASSCODE = stringPreferencesKey("passcode")
+
 class UserPreferencesRepository constructor(val context: Context){
-    val PASSCODE = stringPreferencesKey("passcode")
 
     val passcodeFlow: Flow<String> = context.dataStore.data
         .map {
             it[PASSCODE] ?: "null"
         }
-
 
     suspend fun setPasscode(passcode: String){
         context.dataStore.edit{passcode_store ->

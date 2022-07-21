@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.seytkalievm.passwordmanager.databinding.FragmentHomeBinding
 import com.seytkalievm.passwordmanager.presentation.session.SessionActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding

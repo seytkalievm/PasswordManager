@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/passcode_nav_graph"
+    app:startDestination="@id/createPasscodeFragment">
+
+    <fragment
+        android:id="@+id/confirmPasscodeFragment"
+        android:name="com.seytkalievm.passwordmanager.presentation.passcode.create.confirm.ConfirmPasscodeFragment"
+        android:label="ConfirmPasscodeFragment"
+        tools:layout="@layout/fragment_create_passcode">
+        <argument android:name="passcode"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createPasscodeFragment"
+        android:name="com.seytkalievm.passwordmanager.presentation.passcode.create.create.CreatePasscodeFragment"
+        android:label="fragment_create_passcode"
+        tools:layout="@layout/fragment_create_passcode" >
+
+        <action
+            android:id="@+id/action_createPasscodeFragment_to_confirmPasscodeFragment"
+            app:destination="@id/confirmPasscodeFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+</navigation>

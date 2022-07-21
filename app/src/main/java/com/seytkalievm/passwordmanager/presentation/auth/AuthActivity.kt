@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -13,18 +15,21 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.databinding.ActivityAuthBinding
-import com.seytkalievm.passwordmanager.presentation.session.SessionActivity
+import com.seytkalievm.passwordmanager.presentation.passcode.create.CreatePasscodeActivity
 import dagger.hilt.android.AndroidEntryPoint
+
+
+private const val TAG = "AuthActivity"
 
 @AndroidEntryPoint
 class AuthActivity : AppCompatActivity() {
 
-    private val RC_SIGN_IN = 120
-    private val TAG = "AuthActivity"
     private lateinit var binding: ActivityAuthBinding
 
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+
+    private lateinit var launcher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,30 +40,14 @@ class AuthActivity : AppCompatActivity() {
             .requestEmail()
             .requestId()
             .build()
+
         googleSignInClient = GoogleSignIn.getClient(this, gso)
-        firebaseAuth = FirebaseAuth.getInstance()
 
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
-    }
 
-    fun signInWithGoogle(){
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
-
-    fun startSession(){
-        val intent = Intent(this, SessionActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
-        startActivity(intent)
-        finish()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+        launcher = registerForActivityResult(StartActivityForResult()){
+            val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
             val exception = task.exception
             if (task.isSuccessful) {
                 try {
@@ -75,6 +64,19 @@ class AuthActivity : AppCompatActivity() {
         }
     }
 
+    fun signInWithGoogle(){
+        launcher.launch(googleSignInClient.signInIntent)
+    }
+
+    private fun createPasscode(){
+        val intent = Intent(this, CreatePasscodeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
+        intent.putExtra("type", "create")
+        startActivity(intent)
+        finish()
+    }
+
+
     private fun firebaseAuthWithGoogle(idToken: String){
         val firebaseCredential = GoogleAuthProvider.getCredential(idToken, null)
         firebaseAuth.signInWithCredential(firebaseCredential)
@@ -82,7 +84,7 @@ class AuthActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
-                    startSession()
+                    createPasscode()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)

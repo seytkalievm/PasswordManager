@@ -1,5 +1,6 @@
 package com.seytkalievm.passwordmanager.presentation.auth.login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.databinding.FragmentLoginBinding
 import com.seytkalievm.passwordmanager.presentation.auth.AuthActivity
+import com.seytkalievm.passwordmanager.presentation.passcode.create.CreatePasscodeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,7 +39,7 @@ class LogInFragment : Fragment() {
         loginViewModel.firebaseUser.observe(viewLifecycleOwner){
             if (it != null) {
                 Toast.makeText(this.context, "User logged in", Toast.LENGTH_SHORT).show()
-                (activity as AuthActivity).startSession()
+                createPasscode()
             }
         }
 
@@ -67,5 +69,11 @@ class LogInFragment : Fragment() {
         findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
     }
 
+    private fun createPasscode(){
+        val intent = Intent(context, CreatePasscodeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
+        startActivity(intent)
+        activity?.finish()
+    }
 
 }

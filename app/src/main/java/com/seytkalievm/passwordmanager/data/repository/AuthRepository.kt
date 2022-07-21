@@ -1,4 +1,4 @@
-package com.seytkalievm.passwordmanager.data
+package com.seytkalievm.passwordmanager.data.repository
 
 import android.content.Context
 import android.util.Log
@@ -31,10 +31,7 @@ class AuthRepository(val context: Context) {
     }
 
     suspend fun logout(){
-        Toast
-            .makeText(context,
-                "Signing out", Toast.LENGTH_SHORT)
-            .show()
+        Toast.makeText(context, "Signing out", Toast.LENGTH_SHORT).show()
 
         firebaseAuth.signOut()
         _user.postValue(firebaseAuth.currentUser)

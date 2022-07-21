@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.seytkalievm.passwordmanager.databinding.ActivitySessionBinding
 import com.seytkalievm.passwordmanager.presentation.auth.AuthActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class SessionActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySessionBinding

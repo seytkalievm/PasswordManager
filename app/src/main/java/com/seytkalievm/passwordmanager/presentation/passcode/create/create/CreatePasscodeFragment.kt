@@ -1,33 +1,34 @@
-package com.seytkalievm.passwordmanager.presentation.passcode.enter
+package com.seytkalievm.passwordmanager.presentation.passcode.create.create
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.seytkalievm.passwordmanager.R
-import com.seytkalievm.passwordmanager.databinding.FragmentPasscodeBinding
-import com.seytkalievm.passwordmanager.presentation.passcode.PasscodeActivity
+import com.seytkalievm.passwordmanager.databinding.FragmentCreatePasscodeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class EnterPasscodeFragment : Fragment() {
+@AndroidEntryPoint
+class CreatePasscodeFragment : Fragment() {
 
-    private lateinit var binding: FragmentPasscodeBinding
+    private lateinit var binding: FragmentCreatePasscodeBinding
+
+    private val viewModel: CreatePasscodeViewModel by viewModels()
 
     private lateinit var circles: List<View>
     private lateinit var numPad: List<Button>
 
 
-    private val viewModel: EnterPasscodeViewModel by viewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPasscodeBinding.inflate(inflater, container, false)
-
+        binding = FragmentCreatePasscodeBinding.inflate(inflater, container, false)
         circles = listOf( binding.circle1, binding.circle2, binding.circle3, binding.circle4)
         numPad = listOf(
             binding.button0,
@@ -42,39 +43,32 @@ class EnterPasscodeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.isPasscodeValid.observe(viewLifecycleOwner){ valid ->
-            if (valid) (activity as PasscodeActivity).startSession()
-        }
+        viewModel.coloredDots.observe(viewLifecycleOwner){
+            colorDots(it - 1)
+            if (it == 4) {
+                Log.i("CreatePasscodeFragment", "onViewCreated: navigating to the confirm")
+                val passcode = viewModel.passcode
+                viewModel.remove()
+                findNavController().navigate(CreatePasscodeFragmentDirections
+                    .actionCreatePasscodeFragmentToConfirmPasscodeFragment(passcode))
 
-        viewModel.coloredDots.observe(viewLifecycleOwner){ coloredDots ->
-            colorDots(coloredDots - 1)
+            }
         }
 
     }
 
     private fun setButtonClickListeners(){
         for (i in 0..9 ){
-            setNumberListener(numPad[i], i)
+            numPad[i].setOnClickListener {
+                viewModel.numberPressed(i)
+            }
         }
 
         binding.buttonBackspace.setOnClickListener{
-            it as ImageButton
             viewModel.remove()
         }
 
-        binding.buttonExit.setOnClickListener {
-            viewModel.logout()
-            (activity as PasscodeActivity).exit()
-        }
     }
-
-    private fun setNumberListener(button: Button, number: Int){
-        button.setOnClickListener{
-            binding.buttonBackspace.setImageResource(R.drawable.ic_baseline_backspace_24)
-            viewModel.numberPressed(number)
-        }
-    }
-
 
     private fun colorDots(number: Int){
         for (i in 0..number) {
@@ -84,4 +78,5 @@ class EnterPasscodeFragment : Fragment() {
             circles[i].setBackgroundResource(R.drawable.bg_view_grey_circle)
         }
     }
+
 }

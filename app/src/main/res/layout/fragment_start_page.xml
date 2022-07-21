@@ -8,37 +8,38 @@
     android:background="@drawable/gradient_background"
     tools:context=".presentation.auth.StartPageFragment">
 
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:contentDescription="@string/start_screen_image"
         android:src="@drawable/start_screen_image"
+        app:layout_constraintBottom_toTopOf="@+id/start_store_accounts_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/start_store_accounts_tv"
         style="@style/HeaderText"
         android:layout_width="242dp"
         android:layout_height="62dp"
-        android:layout_marginTop="64dp"
         android:text="@string/store_your_accounts_in_one_place"
+        app:layout_constraintBottom_toTopOf="@+id/start_forget_about_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <TextView
         android:id="@+id/start_forget_about_tv"
-        android:layout_width="295dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="24dp"
         style="@style/HeaderText"
+        android:layout_width="295dp"
+        android:layout_height="wrap_content"
+        android:text="@string/Forget_about_searching"
         android:textAllCaps="true"
         android:textSize="14sp"
-        android:text="@string/Forget_about_searching"
+        app:layout_constraintBottom_toTopOf="@+id/start_register_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start_store_accounts_tv" />
@@ -49,8 +50,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="32dp"
         android:text="@string/register"
+        app:layout_constraintBottom_toTopOf="@+id/start_login_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start_forget_about_tv"
@@ -62,7 +63,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="20dp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/assistant_bold"
         android:text="@string/sign_in"
@@ -71,7 +71,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start_register_btn"
-        app:layout_constraintVertical_bias="0.0"
         tools:ignore="TextContrastCheck" />
 
 

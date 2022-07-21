@@ -5,14 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.seytkalievm.passwordmanager.R
-import com.seytkalievm.passwordmanager.data.AuthRepository
+import com.seytkalievm.passwordmanager.data.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel@Inject constructor(val authRepository: AuthRepository): ViewModel() {
 
-    val firebaseUser = authRepository.userLiveData
+    val user = authRepository.userLiveData
 
     private var _fromState = MutableLiveData(RegistrationFormState())
     val formState: LiveData<RegistrationFormState> get() = _fromState

@@ -1,8 +1,8 @@
 package com.seytkalievm.passwordmanager.di
 
 import android.content.Context
-import com.seytkalievm.passwordmanager.data.AuthRepository
-import com.seytkalievm.passwordmanager.data.UserPreferencesRepository
+import com.seytkalievm.passwordmanager.data.repository.AuthRepository
+import com.seytkalievm.passwordmanager.data.repository.UserPreferencesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,13 +19,13 @@ object RepositoryModule {
     @Provides
     fun provideUserPreferencesRepository(
         @ApplicationContext context: Context
-    ): UserPreferencesRepository{
+    ): UserPreferencesRepository {
         return UserPreferencesRepository(context)
     }
 
     @Singleton
     @Provides
-    fun provideAuthRepository( @ApplicationContext context: Context): AuthRepository{
+    fun provideAuthRepository( @ApplicationContext context: Context): AuthRepository {
         return AuthRepository(context)
     }
 }

@@ -2,8 +2,8 @@ package com.seytkalievm.passwordmanager.presentation.passcode.enter
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.seytkalievm.passwordmanager.data.AuthRepository
-import com.seytkalievm.passwordmanager.data.UserPreferencesRepository
+import com.seytkalievm.passwordmanager.data.repository.AuthRepository
+import com.seytkalievm.passwordmanager.data.repository.UserPreferencesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -12,8 +12,8 @@ import javax.inject.Inject
 @HiltViewModel
 class EnterPasscodeViewModel @Inject constructor(
     private val preferencesRepository: UserPreferencesRepository,
-    private val authRepository: AuthRepository
-    ): ViewModel() {
+    private val authRepository: AuthRepository,
+): ViewModel() {
 
     private var currentPasscode = ""
     private val _isPasscodeValid = MutableLiveData<Boolean>()

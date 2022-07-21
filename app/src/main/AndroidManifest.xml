@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.seytkalievm.passwordmanager" >
+    package="com.seytkalievm.passwordmanager">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
@@ -13,19 +13,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PasswordManager" >
+        android:theme="@style/Theme.PasswordManager">
         <activity
-            android:name=".presentation.passcode.PasscodeActivity"
-            android:exported="false" />
+            android:name=".presentation.passcode.enter.EnterPasscodeActivity"
+            android:exported="false"/>
         <activity
-            android:name=".presentation.session.main.SessionActivity"
+            android:name=".presentation.passcode.create.CreatePasscodeActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".presentation.session.SessionActivity"
             android:exported="true" />
         <activity
             android:name=".presentation.auth.AuthActivity"
             android:exported="true" />
         <activity
             android:name=".presentation.MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -4,22 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.auth.passcode.CreatePasscodeFragment">
+    tools:context=".presentation.passcode.create.create.CreatePasscodeFragment">
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
+    <TextView
+        android:id="@+id/fragmentCreatePasscodeTitleTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="32dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        android:text="@string/create_passcode"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentCreatePasscodeCirclesLL"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.617">
+        app:layout_constraintVertical_bias="0.612" />
+
+    <TextView
+        android:id="@+id/fragmentCreatePasscodeErrorTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/passcodes_dont_match"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentCreatePasscodeCirclesLL"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentCreatePasscodeTitleTv" />
+
+
+    <LinearLayout
+        android:id="@+id/fragmentCreatePasscodeCirclesLL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:layout_marginTop="101dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentCreatePasscodeNumpadTL"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentCreatePasscodeTitleTv">
 
         <View
             android:id="@+id/circle1"
@@ -52,7 +76,7 @@
 
 
     <TableLayout
-        android:id="@+id/tableLayout"
+        android:id="@+id/fragmentCreatePasscodeNumpadTL"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
@@ -235,16 +259,5 @@
         </TableRow>
     </TableLayout>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create_passcode"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.612" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

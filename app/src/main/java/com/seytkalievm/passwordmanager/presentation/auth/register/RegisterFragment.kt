@@ -1,5 +1,6 @@
 package com.seytkalievm.passwordmanager.presentation.auth.register
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.databinding.FragmentRegisterBinding
 import com.seytkalievm.passwordmanager.presentation.auth.AuthActivity
+import com.seytkalievm.passwordmanager.presentation.passcode.create.CreatePasscodeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -43,10 +45,10 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        registerViewModel.firebaseUser.observe(viewLifecycleOwner) { user ->
+        registerViewModel.user.observe(viewLifecycleOwner) { user ->
             if (user != null) {
                 Toast.makeText(this.context, "User Registered", Toast.LENGTH_SHORT).show()
-                (activity as AuthActivity).startSession()
+                createPasscode()
             }
         }
 
@@ -70,7 +72,6 @@ class RegisterFragment : Fragment() {
 
         password.addTextChangedListener {
             binding.registerPasswordLayout.error = null
-
             registerViewModel.passwordChanged(it.toString())
         }
 
@@ -96,4 +97,10 @@ class RegisterFragment : Fragment() {
         findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
     }
 
+    private fun createPasscode(){
+        val intent = Intent(context, CreatePasscodeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
+        startActivity(intent)
+        activity?.finish()
+    }
 }

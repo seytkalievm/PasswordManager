@@ -34,10 +34,11 @@
             android:id="@+id/linearLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
             android:gravity="center"
             android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_register_tv">
 
@@ -65,10 +66,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/register_password_layout"
                 style="@style/InputText"
-                android:layout_marginHorizontal="@dimen/text_horizontal_margin"
-                android:layout_marginVertical="@dimen/text_vertical_margin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/text_horizontal_margin"
+                android:layout_marginVertical="@dimen/text_vertical_margin"
                 app:passwordToggleEnabled="true">
 
                 <EditText
@@ -86,10 +87,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/register_conf_password_layout"
                 style="@style/InputText"
-                android:layout_marginHorizontal="@dimen/text_horizontal_margin"
-                android:layout_marginVertical="@dimen/text_vertical_margin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/text_horizontal_margin"
+                android:layout_marginVertical="@dimen/text_vertical_margin"
                 app:passwordToggleEnabled="true">
 
                 <EditText
@@ -113,25 +114,23 @@
             android:layout_height="153dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="-2dp"
+            android:contentDescription="@string/ok_hand"
             android:src="@drawable/ok_hand"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/ok_hand" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <LinearLayout
             android:id="@+id/linearLayout5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
             <TextView
                 android:id="@+id/register_have_account_tv"
@@ -159,16 +158,15 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
             <Button
                 android:id="@+id/register_register_bnt"
