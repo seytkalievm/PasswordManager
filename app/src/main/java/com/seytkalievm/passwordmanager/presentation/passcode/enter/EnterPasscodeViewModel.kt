@@ -2,8 +2,8 @@ package com.seytkalievm.passwordmanager.presentation.passcode.enter
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.seytkalievm.passwordmanager.data.repository.AuthRepository
-import com.seytkalievm.passwordmanager.data.repository.UserPreferencesRepository
+import com.seytkalievm.passwordmanager.domain.repository.AuthRepository
+import com.seytkalievm.passwordmanager.domain.repository.UserPreferencesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -26,7 +26,7 @@ class EnterPasscodeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            currentPasscode = preferencesRepository.passcodeFlow.first()
+            currentPasscode = preferencesRepository.passcode.first()
         }
     }
 

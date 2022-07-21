@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
-import com.seytkalievm.passwordmanager.data.repository.UserPreferencesRepository
+import com.seytkalievm.passwordmanager.domain.repository.UserPreferencesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -27,7 +27,7 @@ class MainViewModel@Inject constructor(
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            _passcode = preferencesRepository.passcodeFlow.first()
+            _passcode = preferencesRepository.passcode.first()
             _isReady.postValue(true)
         }
     }

@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             if (it){
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
                 val intent = if(viewModel.user!= null){
-                    if (viewModel.passcode!=null){
+                    if (viewModel.passcode==null){
                         Intent(this, CreatePasscodeActivity::class.java)
                     } else{
                         Intent(this, EnterPasscodeActivity::class.java)

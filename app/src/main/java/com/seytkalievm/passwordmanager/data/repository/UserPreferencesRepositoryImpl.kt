@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.seytkalievm.passwordmanager.domain.repository.UserPreferencesRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -14,14 +15,14 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "pa
 
 private val PASSCODE = stringPreferencesKey("passcode")
 
-class UserPreferencesRepository constructor(val context: Context){
+class UserPreferencesRepositoryImpl constructor(val context: Context): UserPreferencesRepository{
 
-    val passcodeFlow: Flow<String> = context.dataStore.data
+   override val passcode: Flow<String> = context.dataStore.data
         .map {
             it[PASSCODE] ?: "null"
         }
 
-    suspend fun setPasscode(passcode: String){
+    override suspend fun setPasscode(passcode: String){
         context.dataStore.edit{passcode_store ->
             passcode_store[PASSCODE] = passcode
         }

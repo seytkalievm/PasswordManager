@@ -8,14 +8,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.seytkalievm.passwordmanager.domain.repository.AuthRepository
 
-class AuthRepository(val context: Context) {
+class AuthRepositoryImpl(val context: Context): AuthRepository {
 
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val _user = MutableLiveData<FirebaseUser>()
-    val userLiveData: LiveData<FirebaseUser> get() = _user
+    override val user: LiveData<FirebaseUser> get() = _user
 
-    fun register(email: String, password: String){
+    override fun register(email: String, password: String){
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
@@ -30,7 +31,7 @@ class AuthRepository(val context: Context) {
             }
     }
 
-    suspend fun logout(){
+    override suspend fun logout(){
         Toast.makeText(context, "Signing out", Toast.LENGTH_SHORT).show()
 
         firebaseAuth.signOut()
@@ -53,7 +54,7 @@ class AuthRepository(val context: Context) {
         }
     }
 
-    fun login(email: String, password: String){
+    override fun login(email: String, password: String){
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if(it.isSuccessful){
