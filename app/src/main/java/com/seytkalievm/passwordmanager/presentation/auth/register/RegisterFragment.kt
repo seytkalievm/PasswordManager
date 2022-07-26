@@ -1,5 +1,6 @@
 package com.seytkalievm.passwordmanager.presentation.auth.register
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.seytkalievm.passwordmanager.R
+import com.seytkalievm.passwordmanager.common.Resource
 import com.seytkalievm.passwordmanager.databinding.FragmentRegisterBinding
 import com.seytkalievm.passwordmanager.presentation.auth.AuthActivity
 import com.seytkalievm.passwordmanager.presentation.passcode.create.CreatePasscodeActivity
@@ -45,10 +47,22 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        registerViewModel.user.observe(viewLifecycleOwner) { user ->
-            if (user != null) {
-                Toast.makeText(this.context, "User Registered", Toast.LENGTH_SHORT).show()
-                createPasscode()
+        val progressDialog = context?.let { Dialog(it) }
+        progressDialog?.setContentView(R.layout.layout_progress_bar)
+
+        registerViewModel.registerStatus.observe(viewLifecycleOwner){ resource ->
+            when (resource){
+                is Resource.Loading -> {
+                    progressDialog?.show()
+                }
+                is Resource.Success -> {
+                    progressDialog?.dismiss()
+                    createPasscode()
+                }
+                is Resource.Error -> {
+                    progressDialog?.dismiss()
+                    Toast.makeText(context, resource.message, Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
@@ -82,11 +96,7 @@ class RegisterFragment : Fragment() {
 
     }
     fun register(){
-        registerViewModel.checkFromValidity()
-
-        if (registerViewModel.isFromValid){
-            registerViewModel.register()
-        }
+        registerViewModel.register()
     }
 
     fun continueWithGoogle(){

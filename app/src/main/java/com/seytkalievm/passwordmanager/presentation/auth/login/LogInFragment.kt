@@ -1,5 +1,6 @@
 package com.seytkalievm.passwordmanager.presentation.auth.login
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.seytkalievm.passwordmanager.R
+import com.seytkalievm.passwordmanager.common.Resource
 import com.seytkalievm.passwordmanager.databinding.FragmentLoginBinding
 import com.seytkalievm.passwordmanager.presentation.auth.AuthActivity
 import com.seytkalievm.passwordmanager.presentation.passcode.create.CreatePasscodeActivity
@@ -36,10 +38,22 @@ class LogInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.fragment = this
 
-        loginViewModel.firebaseUser.observe(viewLifecycleOwner){
-            if (it != null) {
-                Toast.makeText(this.context, "User logged in", Toast.LENGTH_SHORT).show()
-                createPasscode()
+        val progressDialog = context?.let { Dialog(it) }
+        progressDialog?.setContentView(R.layout.layout_progress_bar)
+
+        loginViewModel.loginStatus.observe(viewLifecycleOwner){ resource ->
+            when(resource){
+                is Resource.Loading -> {
+                    progressDialog?.show()
+                }
+                is Resource.Success -> {
+                    progressDialog?.dismiss()
+                    createPasscode()
+                }
+                is Resource.Error -> {
+                    progressDialog?.dismiss()
+                    Toast.makeText(context, resource.message, Toast.LENGTH_SHORT).show()
+                }
             }
         }
 

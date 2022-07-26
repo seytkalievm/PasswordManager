@@ -14,12 +14,11 @@ class RegisterViewModel@Inject constructor(
     val authRepository: AuthRepository
 ): ViewModel() {
 
-    val user = authRepository.user
-
     private var _fromState = MutableLiveData(RegistrationFormState())
     val formState: LiveData<RegistrationFormState> get() = _fromState
-    private var _isFormValid: Boolean = false
-    val isFromValid:Boolean get() = _isFormValid
+    private var formIsValid: Boolean = false
+
+    val registerStatus = authRepository.registerStatus
 
     private var email = ""
     private var password = ""
@@ -76,12 +75,13 @@ class RegisterViewModel@Inject constructor(
     }
 
 
-    fun checkFromValidity(){
-        _isFormValid = isValidEmail() && isValidPassword() && doPasswordsMatch()
+    private fun checkFromValidity(){
+        formIsValid = isValidEmail() && isValidPassword() && doPasswordsMatch()
     }
 
     fun register(){
-        authRepository.register(email, password)
+        checkFromValidity()
+        if (formIsValid) authRepository.register(email, password)
     }
 
 }

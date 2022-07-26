@@ -1,45 +1,62 @@
 package com.seytkalievm.passwordmanager.data.repository
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.seytkalievm.passwordmanager.common.Resource
 import com.seytkalievm.passwordmanager.domain.repository.AuthRepository
 
 class AuthRepositoryImpl(val context: Context): AuthRepository {
 
     private val firebaseAuth = FirebaseAuth.getInstance()
+
     private val _user = MutableLiveData<FirebaseUser>()
     override val user: LiveData<FirebaseUser> get() = _user
 
+    private val _loginStatus = MutableLiveData<Resource<Boolean>>()
+    override val loginStatus: LiveData<Resource<Boolean>> get() = _loginStatus
+
+    private val _registerStatus = MutableLiveData<Resource<Boolean>>()
+    override val registerStatus: LiveData<Resource<Boolean>> get() = _registerStatus
+
+    private val _logoutStatus = MutableLiveData<Resource<Boolean>>()
+    override val logoutStatus: LiveData<Resource<Boolean>> get() = _logoutStatus
+
     override fun register(email: String, password: String){
+        _registerStatus.postValue(Resource.Loading())
+
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     sendEmailVerification()
                     _user.postValue(firebaseAuth.currentUser)
+                    _registerStatus.postValue(Resource.Success(data = true))
                 } else {
-                     Toast
-                         .makeText(context,
-                             "Registration error ${it.exception}", Toast.LENGTH_SHORT)
-                         .show()
+                    _registerStatus.postValue(
+                        Resource.Error(message = it.exception?.message.toString())
+                    )
                 }
             }
     }
 
     override suspend fun logout(){
-        Toast.makeText(context, "Signing out", Toast.LENGTH_SHORT).show()
+        _logoutStatus.postValue(Resource.Loading())
+        try {
+            firebaseAuth.signOut()
+            _user.postValue(firebaseAuth.currentUser)
+            context.dataStore.edit {
+                it.clear()
+            }
+            _logoutStatus.postValue(Resource.Success(data = true))
 
-        firebaseAuth.signOut()
-        _user.postValue(firebaseAuth.currentUser)
-        context.dataStore.edit {
-            it.clear()
+        } catch (e: Exception){
+            _logoutStatus.postValue(Resource.Error(message = e.message.toString()))
         }
-        Log.i("User:", firebaseAuth.currentUser.toString())
+
     }
 
     private fun sendEmailVerification(){
@@ -54,16 +71,17 @@ class AuthRepositoryImpl(val context: Context): AuthRepository {
         }
     }
 
-    override fun login(email: String, password: String){
+    override fun login(email: String, password: String) {
+        _loginStatus.postValue(Resource.Loading())
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if(it.isSuccessful){
                     _user.postValue(firebaseAuth.currentUser)
+                    _loginStatus.postValue(Resource.Success(data = true))
                 } else {
-                    Toast
-                        .makeText(context,
-                            "Registration error ${it.exception}", Toast.LENGTH_SHORT)
-                        .show()
+                    _loginStatus.postValue(
+                        Resource.Error(message = it.exception?.message.toString())
+                    )
                 }
             }
     }

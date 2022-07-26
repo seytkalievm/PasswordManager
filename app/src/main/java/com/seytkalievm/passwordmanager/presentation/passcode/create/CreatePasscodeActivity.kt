@@ -14,4 +14,8 @@ class CreatePasscodeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_passcode)
     }
 
+
+    override fun onBackPressed() {
+        moveTaskToBack(false)
+    }
 }

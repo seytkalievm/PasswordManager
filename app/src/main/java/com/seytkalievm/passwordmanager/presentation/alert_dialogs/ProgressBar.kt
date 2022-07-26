@@ -1,0 +1,4 @@
+package com.seytkalievm.passwordmanager.presentation.alert_dialogs
+
+import android.app.Activity
+import com.seytkalievm.passwordmanager.databinding.LayoutProgressBarBinding
