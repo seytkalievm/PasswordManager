@@ -3,7 +3,7 @@ package com.seytkalievm.passwordmanager.presentation.passcode.create.confirm
 import android.util.Log
 import androidx.lifecycle.*
 import com.seytkalievm.passwordmanager.R
-import com.seytkalievm.passwordmanager.domain.repository.UserPreferencesRepository
+import com.seytkalievm.passwordmanager.domain.use_case.SetPasscodeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -11,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ConfirmPasscodeViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val preferencesRepository: UserPreferencesRepository
+    private val setPasscodeUseCase: SetPasscodeUseCase
 ) : ViewModel() {
 
     private val _passcodeSet = MutableLiveData(false)
@@ -57,7 +57,7 @@ class ConfirmPasscodeViewModel @Inject constructor(
 
     private fun createPasscode(){
         viewModelScope.launch {
-            preferencesRepository.setPasscode(confPasscode)
+            setPasscodeUseCase(confPasscode)
             _passcodeSet.postValue(true)
         }
     }

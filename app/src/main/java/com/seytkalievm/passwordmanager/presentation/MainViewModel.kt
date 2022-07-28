@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.seytkalievm.passwordmanager.domain.repository.UserPreferencesRepository
+import com.seytkalievm.passwordmanager.domain.use_case.GetPasscodeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -14,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel@Inject constructor(
-    private val preferencesRepository: UserPreferencesRepository,
+    private val getPasscodeUseCase: GetPasscodeUseCase,
 ): ViewModel() {
 
     private val _isReady = MutableLiveData(false)
@@ -27,7 +28,7 @@ class MainViewModel@Inject constructor(
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            _passcode = preferencesRepository.passcode.first()
+            _passcode = getPasscodeUseCase()
             _isReady.postValue(true)
         }
     }
