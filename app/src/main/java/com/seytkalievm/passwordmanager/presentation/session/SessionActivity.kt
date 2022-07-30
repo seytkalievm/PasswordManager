@@ -1,10 +1,12 @@
 package com.seytkalievm.passwordmanager.presentation.session
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
+import com.seytkalievm.passwordmanager.R
 import com.seytkalievm.passwordmanager.databinding.ActivitySessionBinding
-import com.seytkalievm.passwordmanager.presentation.auth.AuthActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -17,12 +19,20 @@ class SessionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySessionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.session_activity_nav_host_fragment) as NavHostFragment
+
+        val navController = navHostFragment.navController
+        val appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.passwordsFragment, R.id.creditCardsFragment,
+            R.id.personalInfoFragment, R.id.settingsFragment
+        ))
+
+
+        binding.sessionActivityToolbar.setupWithNavController(navController, appBarConfiguration)
+        binding.bottomNavigationMenu.setupWithNavController(navController)
+
     }
 
-    fun logout(){
-        val intent = Intent(this, AuthActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
-        startActivity(intent)
-        finish()
-    }
 }

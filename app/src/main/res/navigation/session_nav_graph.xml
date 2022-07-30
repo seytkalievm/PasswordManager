@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/session_nav_graph"
+    app:startDestination="@id/passwordsFragment">
+
+    <fragment
+        android:id="@+id/passwordsFragment"
+        android:name="com.seytkalievm.passwordmanager.presentation.session.passwords.PasswordsFragment"
+        android:label="Passwords"
+        tools:layout="@layout/fragment_passwords" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.seytkalievm.passwordmanager.presentation.session.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings"/>
+    <fragment
+        android:id="@+id/creditCardsFragment"
+        android:name="com.seytkalievm.passwordmanager.presentation.session.credit_cards.CreditCardsFragment"
+        android:label="Credit Cards"
+        tools:layout="@layout/fragment_credit_cards" />
+    <fragment
+        android:id="@+id/personalInfoFragment"
+        android:name="com.seytkalievm.passwordmanager.presentation.session.personal_info.PersonalInfoFragment"
+        android:label="Personal Info"
+        tools:layout="@layout/fragment_personal_info" />
+</navigation>

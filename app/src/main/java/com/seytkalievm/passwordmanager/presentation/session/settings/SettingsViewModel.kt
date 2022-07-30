@@ -1,4 +1,4 @@
-package com.seytkalievm.passwordmanager.presentation.session.home
+package com.seytkalievm.passwordmanager.presentation.session.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val authRepository: AuthRepository) : ViewModel() {
+class SettingsViewModel @Inject constructor(private val authRepository: AuthRepository) : ViewModel() {
 
     fun logout(){
         viewModelScope.launch {

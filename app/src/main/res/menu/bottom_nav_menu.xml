@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/passwordsFragment"
+        android:title="@string/passwords"
+        android:icon="@drawable/ic_key" />
+
+    <item
+        android:id="@+id/creditCardsFragment"
+        android:title="@string/credit_cards"
+        android:icon="@drawable/ic_card" />
+
+    <item
+        android:id="@+id/personalInfoFragment"
+        android:title="@string/personal_info"
+        android:icon="@drawable/ic_person"/>
+
+    <item
+        android:id="@+id/settingsFragment"
+        android:title="@string/settings"
+        android:icon="@drawable/ic_settings"/>
+</menu>

@@ -54,4 +54,9 @@
     <string name="ok_hand">OK hand</string>
     <string name="handshake">Handshake</string>
     <string name="welcome_back">Welcome Back</string>
+    <!--    menu    -->
+    <string name="passwords">Passwords</string>
+    <string name="credit_cards">Credit Cards</string>
+    <string name="personal_info">Personal Info</string>
+    <string name="settings">Settings</string>
 </resources>
