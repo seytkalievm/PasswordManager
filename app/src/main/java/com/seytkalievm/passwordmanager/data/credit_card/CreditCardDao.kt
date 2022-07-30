@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CreditCardDao {
     @Query("SELECT * FROM credit_cards")
-    suspend fun getAll(): Flow<CreditCardEntity>
+    suspend fun getAll(): Flow<List<CreditCardEntity>>
 
     @Insert
     suspend fun insert(card: CreditCardEntity)

@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PersonalInfoDao {
     @Query("SELECT * FROM personal_info")
-    suspend fun getAll():Flow<PersonalInfoEntity>
+    suspend fun getAll():Flow<List<PersonalInfoEntity>>
 
     @Insert
     suspend fun insert(info: PersonalInfoEntity)
