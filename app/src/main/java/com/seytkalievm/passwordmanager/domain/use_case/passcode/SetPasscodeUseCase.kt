@@ -1,4 +1,4 @@
-package com.seytkalievm.passwordmanager.domain.use_case
+package com.seytkalievm.passwordmanager.domain.use_case.passcode
 
 import com.seytkalievm.passwordmanager.domain.repository.UserPreferencesRepository
 import javax.inject.Inject

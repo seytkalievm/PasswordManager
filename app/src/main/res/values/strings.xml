@@ -59,4 +59,8 @@
     <string name="credit_cards">Credit Cards</string>
     <string name="personal_info">Personal Info</string>
     <string name="settings">Settings</string>
+    <!--    menu    -->
+    <string name="add_account">Add Account</string>
+    <string name="add_card">Add Card</string>
+    <string name="add_document">Add document</string>
 </resources>
