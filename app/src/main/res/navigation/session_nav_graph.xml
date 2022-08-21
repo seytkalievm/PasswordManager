@@ -9,7 +9,14 @@
         android:id="@+id/passwordsFragment"
         android:name="com.seytkalievm.passwordmanager.presentation.session.passwords.PasswordsFragment"
         android:label="Passwords"
-        tools:layout="@layout/fragment_passwords" />
+        tools:layout="@layout/fragment_passwords" >
+        <action
+            android:id="@+id/action_passwordsFragment_to_addWebsiteCredentialsFragment"
+            app:destination="@id/addWebsiteCredentialsFragment" />
+        <action
+            android:id="@+id/action_passwordsFragment_to_editPasswordFragment"
+            app:destination="@id/editPasswordFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.seytkalievm.passwordmanager.presentation.session.settings.SettingsFragment"
@@ -25,4 +32,14 @@
         android:name="com.seytkalievm.passwordmanager.presentation.session.personal_info.PersonalInfoFragment"
         android:label="Personal Info"
         tools:layout="@layout/fragment_personal_info" />
+    <fragment
+        android:id="@+id/addWebsiteCredentialsFragment"
+        android:name="com.seytkalievm.passwordmanager.presentation.session.passwords.add.AddWebsiteCredentialsFragment"
+        android:label="Add Account"
+        tools:layout="@layout/fragment_add_website_credentials" />
+    <fragment
+        android:id="@+id/editPasswordFragment"
+        android:name="com.seytkalievm.passwordmanager.presentation.session.passwords.edit.EditPasswordFragment"
+        android:label="Edit Account"
+        tools:layout="@layout/fragment_edit_password" />
 </navigation>

@@ -33,6 +33,28 @@ class SessionActivity : AppCompatActivity() {
         binding.sessionActivityToolbar.setupWithNavController(navController, appBarConfiguration)
         binding.bottomNavigationMenu.setupWithNavController(navController)
 
+        val mainScreens = mapOf(
+            Pair(R.id.passwordsFragment, true),
+            Pair(R.id.creditCardsFragment, true),
+            Pair(R.id.personalInfoFragment, true),
+            Pair(R.id.settingsFragment, true)
+        )
+
+        navController.addOnDestinationChangedListener{_, destination, _ ->
+            val height = binding.bottomNavigationMenu.height.toFloat()
+
+            when (destination.id){
+                in mainScreens -> {
+                    binding.bottomNavigationMenu.animate().translationY(0f).duration = 300
+                }
+                else -> {
+                    binding.bottomNavigationMenu.animate().translationY(height).duration = 300
+
+                }
+
+            }
+
+        }
     }
 
 }

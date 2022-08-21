@@ -63,4 +63,11 @@
     <string name="add_account">Add Account</string>
     <string name="add_card">Add Card</string>
     <string name="add_document">Add document</string>
+    <string name="website_name">Website name</string>
+    <string name="username">Username</string>
+    <string name="website_icon">website icon</string>
+    <string name="save">Save</string>
+    <string name="create">Create</string>
+    <string name="empty_field">Field cannot be empty</string>
+    <string name="credentials_already_exist">Credentials already exist</string>
 </resources>

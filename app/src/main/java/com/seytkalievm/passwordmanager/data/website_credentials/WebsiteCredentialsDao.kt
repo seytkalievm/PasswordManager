@@ -6,14 +6,14 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface WebsiteCredentialsDao {
     @Query("SELECT * FROM website_credentials")
-    suspend fun getAll(): Flow<List<WebsiteCredentialsEntity>>
+    fun getAll(): Flow<List<WebsiteCredentialsEntity>>
 
     @Insert
-    suspend fun insert(credentials: WebsiteCredentialsEntity)
+    fun insert(credentials: WebsiteCredentialsEntity)
 
     @Delete
-    suspend fun delete(credentials: WebsiteCredentialsEntity)
+    fun delete(credentials: WebsiteCredentialsEntity)
 
     @Update
-    suspend fun update(credentials: WebsiteCredentialsEntity)
+    fun update(credentials: WebsiteCredentialsEntity)
 }
